@@ -65,6 +65,9 @@ p { margin: 0; text-wrap: pretty; }
 .link { font-family: var(--display); font-weight: 700; color: var(--pino); text-decoration-color: var(--madera); text-decoration-thickness: 2px; text-underline-offset: 4px; }
 
 /* Encabezado con las 5 pestañas */
+.marca { display: flex; align-items: center; gap: 14px; }
+.pais { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--sobre-pino); padding-left: 14px; border-left: 1px solid var(--linea-pino); line-height: 1; }
+.bandera { width: 21px; height: 14px; display: block; box-shadow: 0 0 0 1px rgba(243,242,238,.35); }
 .top { background: var(--pino); color: var(--hueso); border-bottom: 1px solid var(--linea-pino); }
 .top__in { display: flex; align-items: center; justify-content: space-between; gap: 12px 28px; min-height: 72px; flex-wrap: wrap; }
 .nav { display: flex; align-items: center; gap: 4px; font-size: 15px; font-weight: 500; }
