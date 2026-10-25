@@ -3,357 +3,167 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EvoHousing · Casas en steel framing en Maldonado y Canelones</title>
+<meta name="description" content="Casas en steel framing fabricadas en taller y montadas en tu terreno. Diseños propios o tu proyecto, en la costa de Maldonado y Canelones.">
+<link rel="canonical" href="https://evohousing.github.io/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:title" content="EvoHousing · Un hogar que crece con vos">
-<meta property="og:description" content="Viviendas evolutivas semi-prefabricadas en steel framing. Maldonado y Canelones, Uruguay.">
+<meta property="og:title" content="EvoHousing · Casas en steel framing en Maldonado y Canelones">
+<meta property="og:description" content="Casas en steel framing fabricadas en taller y montadas en tu terreno. Diseños propios o tu proyecto, en la costa de Maldonado y Canelones.">
 <meta property="og:image" content="https://evohousing.github.io/img/casa.jpg">
-<title>EvoHousing · Viviendas evolutivas en steel framing en Maldonado</title>
-<meta name="description" content="Viviendas evolutivas semi-prefabricadas en steel framing. Empezá con un monoambiente y ampliá a 1 o 2 dormitorios. Maldonado y Canelones, Uruguay.">
+<meta property="og:url" content="https://evohousing.github.io/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Figtree:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="css/estilos.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "GeneralContractor", "name": "EvoHousing", "slogan": "Un hogar que crece con vos.", "description": "Casas en steel framing fabricadas en taller y montadas en tu terreno. Diseños propios o tu proyecto.", "url": "https://evohousing.github.io/", "logo": "https://evohousing.github.io/favicon.svg", "image": "https://evohousing.github.io/img/obras/estructura-sitio.jpg", "email": "evohousing.uy@gmail.com", "sameAs": ["https://www.instagram.com/evohousing.uy/"], "address": {"@type": "PostalAddress", "addressLocality": "Punta del Este", "addressRegion": "Maldonado", "addressCountry": "UY"}, "areaServed": ["Punta del Este", "Maldonado", "San Carlos", "José Ignacio", "Garzón", "Solís", "Atlántida", "Solymar", "Ciudad de la Costa"]}</script>
 <style>
-/* Layout: bandas a todo el ancho que alternan hueso y verde pino; contenido en un contenedor de 1160px, como las páginas del folleto. */
-:root {
-  --pino: #22463C;
-  --pino-osc: #1A372F;
-  --madera: #D9A066;
-  --madera-txt: #8A5426;
-  --hueso: #F3F2EE;
-  --blanco: #FFFFFF;
-  --tinta: #17201D;
-  --gris: #3B4541;
-  --gris-2: #55605B;
-  --linea: #D3D8D3;
-  --linea-pino: #4A6A60;
-  --sobre-pino: #D8DED9;
-  --display: "Archivo", "Arial Narrow", system-ui, sans-serif;
-  --texto: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
-  color-scheme: light;
-}
-*, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-body { margin: 0; background: var(--hueso); color: var(--tinta); font-family: var(--texto); font-size: 17px; line-height: 1.55; }
-img { max-width: 100%; height: auto; display: block; }
-a { color: inherit; }
-:focus-visible { outline: 3px solid var(--madera); outline-offset: 3px; }
-
-.wrap { max-width: 1160px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
-.band { padding-block: clamp(64px, 9vw, 112px); }
-.band--white { background: var(--blanco); }
-.band--pino { background: var(--pino); color: var(--hueso); }
-
-.eyebrow { font-family: var(--display); font-size: 13px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--madera-txt); margin: 0; }
-.band--pino .eyebrow { color: var(--madera); }
-h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; }
-h2 { font-size: clamp(32px, 4.4vw, 48px); font-weight: 800; line-height: 1.02; letter-spacing: -0.02em; }
-h3 { font-size: 22px; font-weight: 700; line-height: 1.15; }
-p { margin: 0; text-wrap: pretty; }
-.lead { color: var(--gris); max-width: 58ch; }
-.band--pino .lead { color: var(--sobre-pino); }
-.section-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px 48px; margin-bottom: 40px; }
-.section-head > div { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
-.section-head .lead { max-width: 36ch; font-size: 16px; }
-
-/* Logo */
-.logo { display: inline-flex; align-items: flex-end; gap: 10px; text-decoration: none; color: inherit; }
-.logo svg { width: 36px; height: 34px; flex-shrink: 0; }
-.logo span { font-family: var(--display); font-weight: 800; font-size: 25px; letter-spacing: -0.02em; line-height: 0.9; }
-.logo span b { font-weight: 400; }
-
-/* Botones */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 0 22px; font-family: var(--display); font-weight: 700; font-size: 16px; text-decoration: none; border: 2px solid transparent; transition: background-color .15s, color .15s; }
-.btn svg { width: 20px; height: 20px; flex-shrink: 0; }
-.btn--madera { background: var(--madera); color: var(--tinta); }
-.btn--madera:hover { background: var(--hueso); }
-.btn--line { border-color: var(--hueso); color: var(--hueso); }
-.btn--line:hover { background: var(--hueso); color: var(--pino); }
-.btn--pino { background: var(--pino); color: var(--hueso); }
-.btn--pino:hover { background: var(--pino-osc); }
-
-/* Encabezado */
-body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--pino); }
-.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--pino); color: var(--hueso); border-bottom: 1px solid var(--linea-pino); }
-.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 72px; }
-.top nav { display: flex; align-items: center; gap: 28px; font-size: 15px; font-weight: 500; }
-.top nav a:not(.btn) { text-decoration: none; color: var(--sobre-pino); }
-.top nav a:not(.btn):hover { color: var(--hueso); }
-.top .btn { min-height: 44px; padding: 0 18px; font-size: 15px; }
-@media (max-width: 760px) { .top nav a:not(.btn) { display: none; } }
-
-/* Hero */
-.hero { background: var(--pino); color: var(--hueso); display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
-.hero__text { padding-block: clamp(48px, 7vw, 96px); padding-left: max(20px, env(safe-area-inset-left, 0px), calc((100vw - 1160px) / 2 + 20px)); padding-right: clamp(24px, 4vw, 56px); display: flex; flex-direction: column; justify-content: center; gap: 24px; min-width: 0; }
-.hero h1 { font-size: clamp(44px, 6vw, 76px); font-weight: 800; line-height: 0.98; letter-spacing: -0.03em; }
-.hero p { color: var(--sobre-pino); font-size: 18px; max-width: 34ch; }
+.hero { background: var(--pino); color: var(--hueso); display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); }
+.hero__text { padding-block: clamp(48px, 7vw, 96px); padding-left: max(20px, env(safe-area-inset-left, 0px), calc((100vw - 1180px) / 2 + 20px)); padding-right: clamp(24px, 4vw, 56px); display: flex; flex-direction: column; justify-content: center; gap: 22px; min-width: 0; }
+.hero p.lead { color: var(--sobre-pino); }
 .hero__ctas { display: flex; flex-wrap: wrap; gap: 12px; }
-.hero__meta { display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 14px; color: var(--sobre-pino); border-top: 1px solid var(--linea-pino); padding-top: 18px; }
-.hero__meta strong { color: var(--hueso); font-weight: 600; }
-.hero__img { min-height: 420px; }
-.hero__img img { width: 100%; height: 100%; object-fit: cover; object-position: 40% 50%; }
-@media (max-width: 860px) {
-  .hero { grid-template-columns: 1fr; }
-  .hero__text { padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
-  .hero__img { min-height: 0; aspect-ratio: 16 / 10; max-width: 100%; order: -1; }
-}
-
-/* Concepto */
-.concepto { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 48px; align-items: center; }
-.concepto__text { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
-.concepto__fig { background: var(--blanco); padding: clamp(20px, 4vw, 40px); display: flex; flex-direction: column; gap: 24px; min-width: 0; }
-.tira { display: grid; grid-template-columns: 43fr 29fr 28fr; gap: 16px; border-top: 2px solid var(--tinta); padding-top: 16px; }
-.tira div { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-.tira b { font-family: var(--display); font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--madera-txt); }
-.tira strong { font-family: var(--display); font-size: clamp(15px, 2vw, 19px); font-weight: 700; line-height: 1.2; }
-.tira span { font-size: 14px; color: var(--gris); }
-.ideal { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 4px 0 0; padding: 0; }
-.ideal li { border: 1.5px solid var(--pino); color: var(--pino); font-size: 14px; font-weight: 600; padding: 7px 12px; }
-@media (max-width: 860px) { .concepto { grid-template-columns: 1fr; } }
-
-/* Etapas */
-.etapas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
-.etapa { background: var(--blanco); display: flex; flex-direction: column; min-width: 0; }
-.etapa__body { padding: 30px 28px 22px; display: flex; flex-direction: column; gap: 12px; flex-grow: 1; }
-.etapa__icon { width: 54px; height: 50px; }
-.etapa h3 { font-size: 30px; font-weight: 800; letter-spacing: -0.01em; }
-.etapa ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; color: var(--gris); font-size: 16px; }
-.etapa__plazo { margin-top: auto; padding-top: 12px; font-size: 14px; color: var(--gris-2); }
-.etapa__plazo strong { color: var(--tinta); }
-.precio { background: var(--pino); color: var(--hueso); padding: 18px 28px 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 10px 16px; }
-.precio small { display: block; font-size: 13px; color: var(--sobre-pino); }
-.precio div > span { font-family: var(--display); font-size: 15px; }
-.precio div > span strong { font-size: 32px; font-weight: 800; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
-.ahorro { background: var(--madera); color: var(--tinta); font-size: 14px; font-weight: 700; padding: 7px 11px; white-space: nowrap; }
-.nota { margin-top: 18px; font-size: 14px; color: var(--gris-2); }
-@media (max-width: 900px) { .etapas { grid-template-columns: 1fr; } }
-
-/* Paquetes */
-.paquetes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
-.paquete { background: var(--blanco); display: flex; flex-direction: column; min-width: 0; }
-.paquete__img { padding: 24px 28px 4px; }
-.paquete__img img { margin: 0 auto; max-height: 320px; width: auto; }
-.paquete__body { padding: 8px 28px 22px; display: flex; flex-direction: column; gap: 6px; }
-.paquete__body h3 { font-size: 26px; font-weight: 800; }
-.paquete__body p { color: var(--gris); font-size: 16px; }
-@media (max-width: 860px) { .paquetes { grid-template-columns: 1fr; } }
-
-/* Sistema */
-.pasos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; list-style: none; margin: 0; padding: 0; counter-reset: paso; }
-.paso { background: var(--hueso); padding: 30px 28px; display: flex; flex-direction: column; gap: 14px; min-width: 0; counter-increment: paso; }
-.paso__top { display: flex; justify-content: space-between; align-items: flex-start; }
-.paso__top::before { content: "0" counter(paso); font-family: var(--display); font-weight: 800; font-size: 46px; line-height: 1; color: var(--pino); }
-.paso__top svg { width: 56px; height: 44px; }
-.paso p { color: var(--gris); font-size: 16px; }
-.beneficios { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; list-style: none; margin: 36px 0 0; padding: 22px 0 0; border-top: 2px solid var(--tinta); }
-.beneficios li { display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 15px; line-height: 1.3; min-width: 0; }
-.beneficios svg { width: 30px; height: 30px; flex-shrink: 0; }
-@media (max-width: 900px) { .pasos { grid-template-columns: 1fr; } .beneficios { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 440px) { .beneficios { grid-template-columns: 1fr; } }
-
-/* Contacto */
-.contacto { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(32px, 6vw, 72px); }
-.zonas { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
-.zonas ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 24px; font-family: var(--display); font-size: 19px; font-weight: 600; }
-.zonas li { padding: 11px 0; border-bottom: 1px solid var(--linea-pino); }
-.tarjeta { background: var(--hueso); color: var(--tinta); padding: clamp(28px, 4vw, 44px); display: flex; flex-direction: column; gap: 26px; min-width: 0; }
-.tarjeta h2 { font-size: clamp(30px, 3.6vw, 40px); }
-.canales { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; font-size: 18px; }
-.canales li { display: flex; align-items: center; gap: 14px; min-width: 0; overflow-wrap: anywhere; }
-.canales svg { width: 22px; height: 22px; flex-shrink: 0; }
-.canales a { text-decoration: none; border-bottom: 1.5px solid var(--madera); }
-.canales a:hover { color: var(--pino); }
-@media (max-width: 860px) { .contacto { grid-template-columns: 1fr; } }
-
-.pie { background: var(--pino-osc); color: var(--sobre-pino); font-size: 14px; }
-.pie .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; padding-block: 28px; }
-.pie .logo { color: var(--hueso); }
+.hero__img { min-height: 460px; position: relative; }
+.hero__img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 45% 60%; }
+@media (max-width: 860px) { .hero { grid-template-columns: 1fr; } .hero__text { padding-right: max(20px, env(safe-area-inset-right, 0px)); } .hero__img { min-height: 0; aspect-ratio: 4 / 3; order: -1; } }
+.camino { background: var(--blanco); display: flex; flex-direction: column; min-width: 0; }
+.camino__img { aspect-ratio: 16 / 10; overflow: hidden; background: var(--blanco); display: flex; align-items: center; justify-content: center; }
+.camino__img img { width: 100%; height: 100%; object-fit: cover; }
+.camino__img.contener img { object-fit: contain; padding: 16px; }
+.camino__txt { padding: 26px 28px 30px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.camino__txt p { color: var(--gris); }
+.camino__txt .link { margin-top: auto; }
+.obra { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.obra img { aspect-ratio: 4 / 3; object-fit: cover; width: 100%; }
+@media (max-width: 760px) { .obra { grid-template-columns: 1fr 1fr; } .obra figure:first-child { grid-column: span 2; } }
+.terminaciones { display: grid; grid-template-columns: 7fr 5fr; gap: 24px; align-items: start; margin-top: 56px; }
+.terminaciones .fotos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.terminaciones img { aspect-ratio: 3 / 4; object-fit: cover; width: 100%; }
+.terminaciones .texto { display: flex; flex-direction: column; gap: 14px; padding-top: 8px; }
+.terminaciones .texto p { color: var(--gris); }
+@media (max-width: 860px) { .terminaciones { grid-template-columns: 1fr; } }
+.secciones { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--linea-pino); }
+.secciones a { display: flex; flex-direction: column; gap: 10px; padding: 32px 32px 32px 0; text-decoration: none; border-bottom: 1px solid var(--linea-pino); }
+.secciones a + a { padding-left: 32px; border-left: 1px solid var(--linea-pino); }
+.secciones a p { color: var(--sobre-pino); }
+.secciones a span { font-family: var(--display); font-weight: 700; color: var(--madera); }
+.secciones a:hover h3 { text-decoration: underline; text-decoration-color: var(--madera); text-underline-offset: 5px; }
+@media (max-width: 760px) { .secciones { grid-template-columns: 1fr; } .secciones a + a { padding-left: 0; border-left: 0; } }
 </style>
-
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="casa" viewBox="0 0 34 32">
-    <polygon points="0,13.28 34,3.72 34,1.12 0,10.68" fill="currentColor"></polygon>
-    <polygon points="3,13.74 11.6,11.32 11.6,31 3,31" fill="currentColor"></polygon>
-    <polygon points="13.2,10.87 21.8,8.45 21.8,31 13.2,31" fill="currentColor"></polygon>
-    <polygon points="23.4,8 32,5.58 32,31 23.4,31" fill="var(--madera)"></polygon>
-  </symbol>
-</svg>
-
-<link rel="canonical" href="https://evohousing.github.io/">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"GeneralContractor","name":"EvoHousing","slogan":"Un hogar que crece con vos.","description":"Viviendas evolutivas semi-prefabricadas en steel framing: monoambiente ampliable a 1 o 2 dormitorios.","url":"https://evohousing.github.io/","logo":"https://evohousing.github.io/favicon.svg","image":"https://evohousing.github.io/img/casa.jpg","email":"evohousing.uy@gmail.com","sameAs":["https://www.instagram.com/evohousing.uy/"],"address":{"@type":"PostalAddress","addressLocality":"Punta del Este","addressRegion":"Maldonado","addressCountry":"UY"},"areaServed":["Punta del Este","Maldonado","San Carlos","José Ignacio","Garzón","Solís","Atlántida","Solimar","Ciudad de la Costa"],"priceRange":"Desde USD 14.718"}
-</script>
 </head>
 <body>
 <header class="top">
-  <div class="wrap">
-    <a class="logo" href="#inicio" aria-label="EvoHousing, inicio"><svg aria-hidden="true"><use href="#casa"></use></svg><span>evo<b>housing</b></span></a>
-    <nav aria-label="Secciones">
-      <a href="#etapas">Etapas</a>
-      <a href="#sistema">Cómo construimos</a>
-      <a href="#zonas">Zonas</a>
-      <a class="btn btn--madera" href="#contacto">Pedir presupuesto</a>
+  <div class="wrap top__in">
+    <a class="logo" href="./" aria-label="EvoHousing, inicio"><svg viewBox="0 0 34 32" aria-hidden="true"><polygon points="0,13.28 34,3.72 34,1.12 0,10.68" fill="#F3F2EE"/><polygon points="3,13.74 11.6,11.32 11.6,31 3,31" fill="#F3F2EE"/><polygon points="13.2,10.87 21.8,8.45 21.8,31 13.2,31" fill="#F3F2EE"/><polygon points="23.4,8 32,5.58 32,31 23.4,31" fill="#D9A066"/></svg><span>evo<b>housing</b></span></a>
+    <nav class="nav" aria-label="Secciones">
+      <a href="./" aria-current="page">Inicio</a>
+      <a href="vivienda-evolutiva.html">Vivienda evolutiva</a>
+      <a href="como-construimos.html">Cómo construimos</a>
+      <a href="zonas.html">Zonas</a>
+      <a class="nav__cta" href="presupuesto.html">Pedir presupuesto</a>
     </nav>
   </div>
 </header>
-
-<main id="inicio">
+<main>
   <section class="hero" aria-labelledby="titulo">
     <div class="hero__text">
-      <p class="eyebrow">Vivienda evolutiva</p>
+      <p class="eyebrow" style="color: var(--madera)">Construcción en steel framing</p>
       <h1 id="titulo">Un hogar que crece con vos.</h1>
-      <p>Empezá con un monoambiente y ampliá a 1 o 2 dormitorios cuando lo necesites. Construcción semi‑prefabricada en steel framing.</p>
+      <p class="lead">Casas en steel framing que fabricamos en taller y montamos en tu terreno. Elegí uno de nuestros diseños o traenos tu proyecto.</p>
       <div class="hero__ctas">
-        <a class="btn btn--madera" href="#etapas">Ver etapas y precios</a>
-        <a class="btn btn--line" href="#contacto">Hablemos</a>
+        <a class="btn btn--madera" href="presupuesto.html">Pedir presupuesto</a>
+        <a class="btn btn--line" href="vivienda-evolutiva.html">Ver vivienda evolutiva</a>
       </div>
-      <div class="hero__meta"><span>Desde <strong>USD 14.718</strong></span><span>Monoambiente listo en <strong>30 días</strong></span><span>Maldonado · Canelones</span></div>
     </div>
-    <div class="hero__img"><img src="img/casa.jpg" alt="Vivienda EvoHousing de un ambiente con gran ventanal y deck de madera, al atardecer" width="1800" height="1126"></div>
+    <div class="hero__img"><img src="img/obras/estructura-sitio.jpg" alt="Estructura metálica montada en obra, contra el cielo" width="1800" height="1350"></div>
   </section>
 
-  <section class="band" aria-labelledby="t-concepto">
-    <div class="wrap concepto">
-      <div class="concepto__text">
-        <p class="eyebrow">El concepto</p>
-        <h2 id="t-concepto">Una vivienda pensada para crecer.</h2>
-        <p class="lead">La vivienda evolutiva arranca con un núcleo básico, un monoambiente completo, y se amplía por etapas a medida que cambian tu familia, tus necesidades o tu presupuesto.</p>
-        <p class="lead">Cada ampliación está prevista desde el proyecto: la casa crece sin perder estética, calidad ni integración arquitectónica.</p>
-        <ul class="ideal" aria-label="Ideal para">
-          <li>Primera vivienda</li><li>Inversión para renta</li><li>Casa de playa o campo</li><li>Vivienda joven</li><li>Construir por etapas</li>
-        </ul>
-      </div>
-      <figure class="concepto__fig" style="margin:0">
-        <img src="img/etapas.jpg" alt="Esquema de las tres etapas: monoambiente, más un dormitorio, más otro dormitorio" width="750" height="334" loading="lazy">
-        <figcaption class="tira">
-          <div><b>Etapa I</b><strong>Monoambiente</strong><span>22 m²</span></div>
-          <div><b>Etapa II</b><strong>+1 dormitorio</strong><span>34 m² totales</span></div>
-          <div><b>Etapa III</b><strong>+1 dormitorio</strong><span>51 m² totales</span></div>
-        </figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <section class="band band--white" id="etapas" aria-labelledby="t-etapas">
+  <section class="band" aria-labelledby="t-precio">
     <div class="wrap">
       <div class="section-head">
-        <div><p class="eyebrow">Construí por etapas</p><h2 id="t-etapas">Empezá chico. Ampliá cuando quieras.</h2></div>
-        <p class="lead">Pagás cada etapa cuando la construís. El precio por m² es el mismo en las tres.</p>
+        <div><p class="eyebrow">Precios</p><h2 id="t-precio">El precio se calcula por metro cuadrado.</h2></div>
+        <p class="lead">Cuanto más grande es la casa, más baja el precio de cada m².</p>
       </div>
-      <div class="etapas">
-        <article class="etapa">
-          <div class="etapa__body">
-            <svg class="etapa__icon" viewBox="0 0 34 32" aria-hidden="true"><polygon points="0,13.28 34,3.72 34,1.12 0,10.68" fill="#B7BEBA"></polygon><polygon points="3,13.74 11.6,11.32 11.6,31 3,31" fill="#22463C"></polygon><polygon points="13.2,10.87 21.8,8.45 21.8,31 13.2,31" fill="none" stroke="#B7BEBA" stroke-width="1"></polygon><polygon points="23.4,8 32,5.58 32,31 23.4,31" fill="none" stroke="#B7BEBA" stroke-width="1"></polygon></svg>
-            <p class="eyebrow">Etapa I</p>
-            <h3>Monoambiente</h3>
-            <ul><li>22 m² cubiertos</li><li>Cocina integrada</li><li>Baño completo</li><li>Aberturas de aluminio</li></ul>
-            <p class="etapa__plazo">Ejecución: <strong>30 días</strong></p>
-          </div>
-          <div class="precio"><div><small>USD 669 por m²</small><span>Desde <strong>USD 14.718</strong></span></div></div>
-        </article>
-        <article class="etapa">
-          <div class="etapa__body">
-            <svg class="etapa__icon" viewBox="0 0 34 32" aria-hidden="true"><polygon points="0,13.28 34,3.72 34,1.12 0,10.68" fill="#B7BEBA"></polygon><polygon points="3,13.74 11.6,11.32 11.6,31 3,31" fill="#B7BEBA"></polygon><polygon points="13.2,10.87 21.8,8.45 21.8,31 13.2,31" fill="#22463C"></polygon><polygon points="23.4,8 32,5.58 32,31 23.4,31" fill="none" stroke="#B7BEBA" stroke-width="1"></polygon></svg>
-            <p class="eyebrow">Etapa II</p>
-            <h3>+1 dormitorio</h3>
-            <ul><li>+12 m² (34 m² totales)</li><li>Dormitorio independiente</li><li>Se integra al monoambiente existente</li></ul>
-            <p class="etapa__plazo">Ejecución: <strong>20 días</strong></p>
-          </div>
-          <div class="precio"><div><small>USD 669 por m²</small><span>Desde <strong>USD 8.028</strong></span></div></div>
-        </article>
-        <article class="etapa">
-          <div class="etapa__body">
-            <svg class="etapa__icon" viewBox="0 0 34 32" aria-hidden="true"><polygon points="0,13.28 34,3.72 34,1.12 0,10.68" fill="#B7BEBA"></polygon><polygon points="3,13.74 11.6,11.32 11.6,31 3,31" fill="#B7BEBA"></polygon><polygon points="13.2,10.87 21.8,8.45 21.8,31 13.2,31" fill="#B7BEBA"></polygon><polygon points="23.4,8 32,5.58 32,31 23.4,31" fill="#D9A066"></polygon></svg>
-            <p class="eyebrow">Etapa III</p>
-            <h3>+1 dormitorio</h3>
-            <ul><li>+17 m² (51 m² totales)</li><li>Segundo dormitorio</li><li>Ideal para familia o renta</li></ul>
-            <p class="etapa__plazo">Ejecución: <strong>20 días</strong></p>
-          </div>
-          <div class="precio"><div><small>USD 669 por m²</small><span>Desde <strong>USD 11.373</strong></span></div></div>
-        </article>
+      <div class="tramos">
+        <div class="tramo"><span>Hasta</span><b>25 m²</b><strong>USD 669 <small>el m²</small></strong></div>
+        <div class="tramo"><span>Hasta</span><b>35 m²</b><strong>USD 647 <small>el m²</small></strong></div>
+        <div class="tramo"><span>Más de</span><b>35 m²</b><strong>USD 628 <small>el m²</small></strong></div>
       </div>
-
-      <div class="section-head" style="margin-top: 72px">
-        <div><p class="eyebrow">Paquetes completos</p><h2>¿Preferís hacerla de una vez?</h2></div>
-        <p class="lead">Construir varias etapas juntas baja el precio por m² y acorta el plazo total.</p>
-      </div>
-      <div class="paquetes">
-        <article class="paquete">
-          <div class="paquete__img"><img src="img/etapa-1-2.jpg" alt="Render de la vivienda de 34 m² con monoambiente y un dormitorio" width="1082" height="944" loading="lazy"></div>
-          <div class="paquete__body"><p class="eyebrow">Etapa I + II</p><h3>Monoambiente + 1 dormitorio</h3><p>34 m² cubiertos · Ejecución: 45 días</p></div>
-          <div class="precio"><div><small>USD 647 por m²</small><span>Desde <strong>USD 21.998</strong></span></div><span class="ahorro">Ahorrás USD 748</span></div>
-        </article>
-        <article class="paquete">
-          <div class="paquete__img"><img src="img/etapa-1-2-3.jpg" alt="Render de la vivienda de 51 m² con monoambiente y dos dormitorios" width="1358" height="964" loading="lazy"></div>
-          <div class="paquete__body"><p class="eyebrow">Etapa I + II + III</p><h3>Monoambiente + 2 dormitorios</h3><p>51 m² cubiertos · Ejecución: 65 días</p></div>
-          <div class="precio"><div><small>USD 628 por m²</small><span>Desde <strong>USD 32.028</strong></span></div><span class="ahorro">Ahorrás USD 2.091</span></div>
-        </article>
-      </div>
-      <p class="nota">Precios sin IVA ni leyes sociales. El ahorro se calcula frente a construir cada etapa por separado.</p>
+      <p class="nota" style="margin-top: 18px">Precios sin IVA ni leyes sociales. <a class="link" href="presupuesto.html#calculadora">Calculá tu precio de referencia</a></p>
     </div>
   </section>
 
-  <section class="band" id="sistema" aria-labelledby="t-sistema">
+  <section class="band band--white" aria-labelledby="t-caminos">
     <div class="wrap">
       <div class="section-head">
-        <div><p class="eyebrow">Cómo construimos</p><h2 id="t-sistema">Semi‑prefabricado: del taller a tu terreno.</h2></div>
-        <p class="lead">Fabricamos la estructura bajo techo y la montamos en el sitio. Así ganamos precisión y acortamos los tiempos de obra.</p>
+        <div><p class="eyebrow">Diseños</p><h2 id="t-caminos">Elegí uno de nuestros diseños o traenos el tuyo.</h2></div>
       </div>
-      <ol class="pasos">
-        <li class="paso" style="background: var(--blanco)">
-          <div class="paso__top"><svg viewBox="0 0 56 44" fill="none" stroke="#22463C" stroke-width="2" aria-hidden="true"><rect x="2" y="22" width="52" height="8"></rect><path d="M8 30v12M28 30v12M48 30v12"></path><path d="M8 22V6h40v16" stroke-dasharray="4 4"></path></svg></div>
-          <h3>Fundación</h3>
-          <p>Platea de hormigón o sistema mixto con pilares, dimensionada desde el inicio para recibir las futuras ampliaciones.</p>
-        </li>
-        <li class="paso" style="background: var(--blanco)">
-          <div class="paso__top"><svg viewBox="0 0 56 44" fill="none" stroke="#22463C" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="52" height="40"></rect><path d="M15 2v40M28 2v40M41 2v40M2 22h52"></path></svg></div>
-          <h3>Fabricación en taller</h3>
-          <p>Los bastidores de steel framing se arman en nuestro taller: medidas precisas, control de calidad y sin depender del clima.</p>
-        </li>
-        <li class="paso" style="background: var(--blanco)">
-          <div class="paso__top"><svg viewBox="0 0 56 44" fill="none" stroke="#22463C" stroke-width="2" aria-hidden="true"><path d="M2 42h52"></path><rect x="8" y="18" width="18" height="24"></rect><rect x="32" y="4" width="18" height="24" stroke-dasharray="4 3"></rect><path d="M41 30v8m-4-4l4 4 4-4"></path></svg></div>
-          <h3>Montaje en sitio</h3>
-          <p>Los paneles llegan listos para montar. Menos días en el terreno, menos desperdicio y una obra más limpia.</p>
-        </li>
-      </ol>
-      <ul class="beneficios">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="#22463C" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>Menos tiempo de obra</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="#22463C" stroke-width="1.8" aria-hidden="true"><rect x="3" y="8" width="10" height="13"></rect><path d="M17 4v8M13 8h8"></path></svg>Ampliaciones simples y limpias</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="#22463C" stroke-width="1.8" aria-hidden="true"><path d="M10 4a2 2 0 0 1 4 0v10a4 4 0 1 1-4 0z"></path><path d="M12 9v8"></path></svg>Eficiencia térmica y confort</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="#22463C" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18"></rect><path d="M8 12l3 3 5-6"></path></svg>Calidad controlada en taller</li>
-      </ul>
+      <div class="grilla-2">
+        <article class="camino" style="background: var(--hueso)">
+          <div class="camino__img contener"><img src="img/etapa-1-2-3.jpg" alt="Maqueta de la vivienda de 51 m² con dos dormitorios" width="1128" height="964" loading="lazy"></div>
+          <div class="camino__txt">
+            <h3>Diseños listos</h3>
+            <p>Un monoambiente de 22 m², con un dormitorio de 34 m² o con dos dormitorios de 51 m². Se construyen de una vez o por etapas.</p>
+            <p class="nota">Imagen ilustrativa</p>
+            <a class="link" href="vivienda-evolutiva.html">Ver vivienda evolutiva</a>
+          </div>
+        </article>
+        <article class="camino" style="background: var(--hueso)">
+          <div class="camino__img"><img src="img/obras/estructura-taller.jpg" alt="Paneles de steel framing con placas OSB montados en obra" width="1800" height="806" loading="lazy" style="object-position: 30% 50%"></div>
+          <div class="camino__txt">
+            <h3>Tu proyecto</h3>
+            <p>¿Ya tenés planos o una idea? La construimos con el mismo sistema y te pasamos el precio por m² según el tamaño.</p>
+            <a class="link" href="presupuesto.html">Pedir presupuesto</a>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
 
-  <section class="band band--pino" id="zonas" aria-labelledby="t-zonas">
-    <div class="wrap contacto">
-      <div class="zonas">
-        <p class="eyebrow">Zonas</p>
-        <h2 id="t-zonas">¿Dónde construimos?</h2>
-        <p class="lead">Costa de Maldonado y Canelones. ¿Tu terreno está en otra zona? Consultanos.</p>
-        <ul>
-          <li>Punta del Este</li><li>Maldonado</li><li>San Carlos</li><li>José Ignacio</li><li>Garzón</li><li>Solís</li><li>Atlántida</li><li>Solimar</li><li>Ciudad de la Costa</li>
-        </ul>
+  <section class="band" aria-labelledby="t-obras">
+    <div class="wrap">
+      <div class="section-head">
+        <div><p class="eyebrow">Obras</p><h2 id="t-obras">Depósito comercial liviano</h2></div>
+        <p class="lead">Proyecto para cliente privado en la periferia de Maldonado.</p>
       </div>
-      <div class="tarjeta" id="contacto">
-        <div style="display:flex; flex-direction:column; gap:14px">
-          <h2>Hablemos de tu casa.</h2>
-          <p style="color: var(--gris)">Te asesoramos sin compromiso y armamos un presupuesto a medida de tu terreno y tu etapa.</p>
+      <div class="obra">
+        <figure class="foto"><img src="img/obras/deposito-estructura.jpg" alt="Estructura y cubierta del depósito" width="1600" height="900" loading="lazy"></figure>
+        <figure class="foto"><img src="img/obras/deposito-instalaciones.jpg" alt="Instalaciones eléctricas sobre tabiques de steel framing" width="1600" height="900" loading="lazy"></figure>
+        <figure class="foto"><img src="img/obras/deposito-cielorraso.jpg" alt="Estructura del cielorraso del depósito" width="1600" height="900" loading="lazy"></figure>
+      </div>
+      <dl class="ficha" style="margin-top: 24px">
+        <div><dt>Superficie</dt><dd>450 m²</dd></div>
+        <div><dt>Ejecución y montaje</dt><dd>50 días</dd></div>
+        <div><dt>Ubicación</dt><dd>Maldonado</dd></div>
+      </dl>
+
+      <div class="terminaciones">
+        <div class="fotos">
+          <figure class="foto"><img src="img/obras/cocina.jpg" alt="Cocina terminada con mesada de granito y muebles blancos" width="1010" height="1180" loading="lazy"><figcaption>Cocina</figcaption></figure>
+          <figure class="foto"><img src="img/obras/dormitorio.jpg" alt="Dormitorio terminado con piso cerámico y cielorraso de PVC" width="646" height="1200" loading="lazy"><figcaption>Dormitorio</figcaption></figure>
         </div>
-        <ul class="canales">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="#22463C" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="0.8" fill="#22463C"></circle></svg><a href="https://www.instagram.com/evohousing.uy/" target="_blank" rel="noopener">@evohousing.uy</a></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="#22463C" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14"></rect><path d="M3 6l9 7 9-7"></path></svg><span>evohousing.uy@gmail.com</span></li>
-        </ul>
-        <div><a class="btn btn--pino" href="https://www.instagram.com/evohousing.uy/" target="_blank" rel="noopener">Escribinos por Instagram</a></div>
+        <div class="texto">
+          <p class="eyebrow">Terminaciones</p>
+          <h2>Así se entrega.</h2>
+          <p>Cocina, baño, cielorraso, pisos, aberturas de aluminio e instalación eléctrica. Fotos de obras reales.</p>
+          <a class="link" href="como-construimos.html">Ver cómo construimos</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--pino" aria-label="Más información">
+    <div class="wrap">
+      <div class="secciones">
+        <a href="como-construimos.html"><h3>Cómo construimos</h3><p>Fundación, fabricación en taller, montaje en tu terreno y terminaciones.</p><span>Ver el proceso</span></a>
+        <a href="zonas.html"><h3>Zonas</h3><p>Costa de Maldonado y Canelones, de Ciudad de la Costa a Garzón.</p><span>Ver zonas</span></a>
       </div>
     </div>
   </section>
 </main>
-
 <footer class="pie">
   <div class="wrap">
-    <a class="logo" href="#inicio"><svg aria-hidden="true"><use href="#casa"></use></svg><span>evo<b>housing</b></span></a>
-    <span>Un hogar que crece con vos. · Uruguay</span>
+    <a class="logo" href="./"><svg viewBox="0 0 34 32" aria-hidden="true"><polygon points="0,13.28 34,3.72 34,1.12 0,10.68" fill="#F3F2EE"/><polygon points="3,13.74 11.6,11.32 11.6,31 3,31" fill="#F3F2EE"/><polygon points="13.2,10.87 21.8,8.45 21.8,31 13.2,31" fill="#F3F2EE"/><polygon points="23.4,8 32,5.58 32,31 23.4,31" fill="#D9A066"/></svg><span>evo<b>housing</b></span></a>
+    <nav aria-label="Pie"><a href="./">Inicio</a> <a href="vivienda-evolutiva.html">Vivienda evolutiva</a> <a href="como-construimos.html">Cómo construimos</a> <a href="zonas.html">Zonas</a> <a href="presupuesto.html">Pedir presupuesto</a></nav>
+    <span><a href="https://www.instagram.com/evohousing.uy/" target="_blank" rel="noopener">@evohousing.uy</a> · evohousing.uy@gmail.com</span>
   </div>
 </footer>
 

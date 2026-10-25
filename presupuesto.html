@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pedir presupuesto · EvoHousing</title>
+<meta name="description" content="Contanos qué querés construir y te respondemos con un presupuesto. Calculá un precio de referencia por m².">
+<link rel="canonical" href="https://evohousing.github.io/presupuesto.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Pedir presupuesto · EvoHousing">
+<meta property="og:description" content="Contanos qué querés construir y te respondemos con un presupuesto. Calculá un precio de referencia por m².">
+<meta property="og:image" content="https://evohousing.github.io/img/casa.jpg">
+<meta property="og:url" content="https://evohousing.github.io/presupuesto.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Figtree:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="css/estilos.css">
+<style>
+.pres { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 40px; align-items: start; }
+@media (max-width: 900px) { .pres { grid-template-columns: 1fr; } }
+form.pedido { display: flex; flex-direction: column; gap: 22px; }
+.fila { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 560px) { .fila { grid-template-columns: 1fr; } }
+.acciones { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.calc { background: var(--pino); color: var(--hueso); padding: 28px; display: flex; flex-direction: column; gap: 16px; position: sticky; top: 20px; }
+.calc h2 { font-size: 28px; }
+.calc .campo label { color: var(--hueso); }
+.calc .campo .ayuda { color: var(--sobre-pino); }
+.calc output { display: flex; flex-direction: column; gap: 4px; border-top: 1px solid var(--linea-pino); padding-top: 16px; }
+.calc output span { color: var(--sobre-pino); font-size: 15px; }
+.calc output strong { font-family: var(--display); font-weight: 800; font-size: 44px; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; line-height: 1.05; }
+.calc .nota { color: var(--sobre-pino); }
+.mensaje { background: var(--blanco); border: 1.5px solid var(--pino); padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+.mensaje pre { margin: 0; white-space: pre-wrap; font-family: var(--texto); font-size: 15px; color: var(--tinta); }
+.error { color: #A13A1F; font-size: 14px; font-weight: 600; }
+.contacto-directo { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; font-size: 16px; }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap top__in">
+    <a class="logo" href="./" aria-label="EvoHousing, inicio"><svg viewBox="0 0 34 32" aria-hidden="true"><polygon points="0,13.28 34,3.72 34,1.12 0,10.68" fill="#F3F2EE"/><polygon points="3,13.74 11.6,11.32 11.6,31 3,31" fill="#F3F2EE"/><polygon points="13.2,10.87 21.8,8.45 21.8,31 13.2,31" fill="#F3F2EE"/><polygon points="23.4,8 32,5.58 32,31 23.4,31" fill="#D9A066"/></svg><span>evo<b>housing</b></span></a>
+    <nav class="nav" aria-label="Secciones">
+      <a href="./">Inicio</a>
+      <a href="vivienda-evolutiva.html">Vivienda evolutiva</a>
+      <a href="como-construimos.html">Cómo construimos</a>
+      <a href="zonas.html">Zonas</a>
+      <a class="nav__cta" href="presupuesto.html" aria-current="page">Pedir presupuesto</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <section class="pagina-cabeza">
+    <div class="wrap">
+      <h1>Pedir presupuesto</h1>
+      <p>Contanos qué querés construir y dónde. Te respondemos con un presupuesto para tu terreno.</p>
+    </div>
+  </section>
+  <section class="band">
+    <div class="wrap pres">
+      <form class="pedido" id="pedido" novalidate>
+        <div class="fila">
+          <div class="campo"><label for="nombre">Nombre</label><input id="nombre" name="nombre" autocomplete="name" required></div>
+          <div class="campo">
+            <label for="zona">Zona del terreno</label>
+            <select id="zona" name="zona" required>
+              <option value="">Elegí una zona</option>
+              <option>Punta del Este</option><option>Maldonado</option><option>San Carlos</option><option>José Ignacio</option><option>Garzón</option><option>Solís</option>
+              <option>Atlántida</option><option>Solymar</option><option>Ciudad de la Costa</option><option>Otra zona</option>
+            </select>
+          </div>
+        </div>
+        <fieldset class="campo">
+          <legend>¿Qué te interesa?</legend>
+          <div class="opciones">
+            <label class="opcion"><input type="radio" name="tipo" value="Monoambiente de 22 m²" data-m2="22" required><span>Monoambiente<small>22 m²</small></span></label>
+            <label class="opcion"><input type="radio" name="tipo" value="Casa con 1 dormitorio de 34 m²" data-m2="34"><span>Con 1 dormitorio<small>34 m²</small></span></label>
+            <label class="opcion"><input type="radio" name="tipo" value="Casa con 2 dormitorios de 51 m²" data-m2="51"><span>Con 2 dormitorios<small>51 m²</small></span></label>
+            <label class="opcion"><input type="radio" name="tipo" value="Mi propio proyecto" data-m2=""><span>Mi propio proyecto<small>Tengo planos o una idea</small></span></label>
+          </div>
+        </fieldset>
+        <div class="fila">
+          <div class="campo"><label for="m2">Superficie aproximada (m²)</label><input id="m2" name="m2" type="number" inputmode="numeric" min="10" max="500" placeholder="Por ejemplo, 40"></div>
+          <div class="campo">
+            <label for="terreno">¿Ya tenés terreno?</label>
+            <select id="terreno" name="terreno"><option>Sí</option><option>Todavía no</option></select>
+          </div>
+        </div>
+        <div class="campo"><label for="comentarios">Comentarios</label><textarea id="comentarios" name="comentarios" placeholder="Contanos lo que quieras: plazos, ideas, preguntas."></textarea></div>
+        <p class="error" id="error" hidden>Completá tu nombre, la zona del terreno y qué te interesa.</p>
+        <div class="acciones">
+          <button class="btn btn--pino" type="submit">Enviar por mail</button>
+          <button class="btn btn--borde" type="button" id="copiar">Copiar mensaje</button>
+        </div>
+        <div class="mensaje" id="mensaje" hidden>
+          <pre id="mensaje-txt"></pre>
+          <p class="nota" id="mensaje-estado">Si no se abrió tu correo, copiá el mensaje y mandalo a evohousing.uy@gmail.com o por Instagram.</p>
+        </div>
+        <div class="contacto-directo">
+          <span>También podés escribirnos directo:</span>
+          <a class="link" href="https://www.instagram.com/evohousing.uy/" target="_blank" rel="noopener">@evohousing.uy en Instagram</a>
+          <span>evohousing.uy@gmail.com</span>
+        </div>
+      </form>
+
+      <aside class="calc" id="calculadora" aria-labelledby="t-calc">
+        <h2 id="t-calc">Precio de referencia</h2>
+        <div class="campo">
+          <label for="calc-m2">Superficie (m²)</label>
+          <input id="calc-m2" type="number" inputmode="numeric" min="10" max="500" value="34">
+          <span class="ayuda">Hasta 25 m²: USD 669 el m² · Hasta 35 m²: USD 647 · Más de 35 m²: USD 628</span>
+        </div>
+        <output for="calc-m2" aria-live="polite">
+          <span id="calc-tarifa">USD 647 por m²</span>
+          <strong id="calc-total">Desde USD 21.998</strong>
+        </output>
+        <p class="nota">Precio sin IVA ni leyes sociales. El presupuesto final depende del terreno y del proyecto.</p>
+      </aside>
+    </div>
+  </section>
+</main>
+<footer class="pie">
+  <div class="wrap">
+    <a class="logo" href="./"><svg viewBox="0 0 34 32" aria-hidden="true"><polygon points="0,13.28 34,3.72 34,1.12 0,10.68" fill="#F3F2EE"/><polygon points="3,13.74 11.6,11.32 11.6,31 3,31" fill="#F3F2EE"/><polygon points="13.2,10.87 21.8,8.45 21.8,31 13.2,31" fill="#F3F2EE"/><polygon points="23.4,8 32,5.58 32,31 23.4,31" fill="#D9A066"/></svg><span>evo<b>housing</b></span></a>
+    <nav aria-label="Pie"><a href="./">Inicio</a> <a href="vivienda-evolutiva.html">Vivienda evolutiva</a> <a href="como-construimos.html">Cómo construimos</a> <a href="zonas.html">Zonas</a> <a href="presupuesto.html">Pedir presupuesto</a></nav>
+    <span><a href="https://www.instagram.com/evohousing.uy/" target="_blank" rel="noopener">@evohousing.uy</a> · evohousing.uy@gmail.com</span>
+  </div>
+</footer>
+<script>
+(function () {
+  const fmt = n => n.toLocaleString('es-UY');
+  const tarifa = m => m <= 25 ? 669 : (m <= 35 ? 647 : 628);
+  const calcM2 = document.getElementById('calc-m2');
+  function calcular() {
+    const m = Math.round(Number(calcM2.value));
+    const t = document.getElementById('calc-tarifa'), tot = document.getElementById('calc-total');
+    if (!m || m < 10) { t.textContent = 'Ingresá una superficie de al menos 10 m²'; tot.textContent = '—'; return; }
+    const p = tarifa(m);
+    t.textContent = 'USD ' + p + ' por m² · ' + m + ' m²';
+    tot.textContent = 'Desde USD ' + fmt(m * p);
+  }
+  calcM2.addEventListener('input', calcular); calcular();
+
+  const form = document.getElementById('pedido');
+  const m2 = document.getElementById('m2');
+  form.querySelectorAll('input[name="tipo"]').forEach(r => r.addEventListener('change', () => {
+    if (r.dataset.m2) { m2.value = r.dataset.m2; calcM2.value = r.dataset.m2; calcular(); }
+  }));
+  m2.addEventListener('input', () => { if (m2.value) { calcM2.value = m2.value; calcular(); } });
+
+  function armar() {
+    const d = new FormData(form);
+    const nombre = (d.get('nombre') || '').trim(), zona = d.get('zona'), tipo = d.get('tipo');
+    if (!nombre || !zona || !tipo) return null;
+    const lineas = ['Hola EvoHousing, soy ' + nombre + '.', '', 'Me interesa: ' + tipo];
+    if (d.get('m2')) lineas.push('Superficie aproximada: ' + d.get('m2') + ' m²');
+    lineas.push('Zona del terreno: ' + zona, '¿Tengo terreno?: ' + d.get('terreno'));
+    const c = (d.get('comentarios') || '').trim();
+    if (c) lineas.push('', c);
+    return lineas.join('\n');
+  }
+  function mostrar(txt) {
+    document.getElementById('mensaje').hidden = false;
+    document.getElementById('mensaje-txt').textContent = txt;
+  }
+  const err = document.getElementById('error');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const txt = armar();
+    err.hidden = !!txt; if (!txt) return;
+    mostrar(txt);
+    location.href = 'mailto:evohousing.uy@gmail.com?subject=' + encodeURIComponent('Pedido de presupuesto') + '&body=' + encodeURIComponent(txt);
+  });
+  document.getElementById('copiar').addEventListener('click', () => {
+    const txt = armar();
+    err.hidden = !!txt; if (!txt) return;
+    mostrar(txt);
+    const estado = document.getElementById('mensaje-estado');
+    const ok = () => { estado.textContent = 'Mensaje copiado. Pegalo en Instagram o en un mail a evohousing.uy@gmail.com.'; };
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok).catch(() => { estado.textContent = 'Seleccioná el mensaje y copialo.'; });
+  });
+})();
+</script>
+</body>
+</html>

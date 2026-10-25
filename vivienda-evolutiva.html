@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vivienda evolutiva · EvoHousing</title>
+<meta name="description" content="Empezás con un monoambiente de 22 m² y le sumás dormitorios cuando los necesitás. Precios y plazos de cada etapa.">
+<link rel="canonical" href="https://evohousing.github.io/vivienda-evolutiva.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Vivienda evolutiva · EvoHousing">
+<meta property="og:description" content="Empezás con un monoambiente de 22 m² y le sumás dormitorios cuando los necesitás. Precios y plazos de cada etapa.">
+<meta property="og:image" content="https://evohousing.github.io/img/casa.jpg">
+<meta property="og:url" content="https://evohousing.github.io/vivienda-evolutiva.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Figtree:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="css/estilos.css">
+<style>
+/* Layout: maqueta 3D sticky a la izquierda; cada etapa baja y se monta sobre el terreno al deslizar. En celular, la maqueta queda fija arriba. */
+:root {
+  --pino: #22463C;
+  --pino-osc: #1A372F;
+  --madera: #D9A066;
+  --madera-txt: #8A5426;
+  --hueso: #F3F2EE;
+  --papel: #FBFAF7;
+  --tinta: #17201D;
+  --gris: #4A544F;
+  --linea: #C7CEC9;
+  --reticula: #EDEFEA;
+  --display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+  --texto: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--hueso); color: var(--tinta); font-family: var(--texto); font-size: 17px; line-height: 1.55; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--madera); outline-offset: 3px; }
+
+.barra { background: var(--pino); color: var(--hueso); }
+.barra .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 64px; }
+.wrap { max-width: 1240px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.logo { display: inline-flex; align-items: flex-end; gap: 9px; text-decoration: none; }
+.logo svg { width: 32px; height: 30px; }
+.logo span { font-family: var(--display); font-weight: 800; font-size: 23px; letter-spacing: -0.02em; line-height: .9; }
+.logo b { font-weight: 400; }
+.barra a.chico { font-size: 15px; color: #D8DED9; text-decoration: none; }
+.barra a.chico:hover { color: var(--hueso); }
+
+.historia { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 48px; align-items: start; padding-block: 32px 0; }
+.escenario { position: sticky; top: 24px; height: calc(100vh - 48px); min-height: 520px; display: flex; flex-direction: column; }
+.lamina { position: relative; flex: 1; min-height: 0; background-color: var(--papel); background-image: linear-gradient(var(--reticula) 1px, transparent 1px), linear-gradient(90deg, var(--reticula) 1px, transparent 1px); background-size: 24px 24px; border: 1px solid var(--linea); overflow: hidden; }
+.lamina-cabeza { position: absolute; left: 0; right: 0; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 20px 24px 0; pointer-events: none; }
+.superficie { font-family: var(--display); font-weight: 800; font-size: clamp(44px, 6vw, 84px); line-height: 1; letter-spacing: -0.03em; font-variation-settings: "wdth" var(--ancho, 75); transition: font-variation-settings .9s cubic-bezier(.2,.7,.2,1); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.superficie small { font-size: .45em; font-weight: 700; letter-spacing: 0; }
+.superficie-nota { font-size: 14px; color: var(--gris); text-align: right; }
+#maqueta { position: absolute; inset: 0; touch-action: pan-y; cursor: grab; }
+#maqueta.arrastrando { cursor: grabbing; }
+#maqueta canvas { display: block; width: 100%; height: 100%; }
+.etiqueta { position: absolute; z-index: 1; transform: translate(-50%, -50%); pointer-events: none; white-space: nowrap; text-align: center; font-family: var(--display); font-weight: 700; font-size: 13px; line-height: 1.15; color: var(--tinta); background: rgba(251,250,247,.9); padding: 4px 8px; border: 1px solid var(--linea); opacity: 0; transition: opacity .4s; }
+.etiqueta span { display: block; font-family: var(--texto); font-weight: 400; font-size: 12px; color: var(--gris); }
+.etiqueta.visible { opacity: 1; }
+.etiqueta.nueva { border-color: var(--madera); box-shadow: inset 0 -3px 0 var(--madera); }
+.girar { position: absolute; left: 20px; bottom: 16px; z-index: 2; font-size: 13px; color: var(--gris); display: inline-flex; gap: 6px; align-items: center; pointer-events: none; }
+.girar svg { width: 16px; height: 16px; }
+
+.rotulo { position: absolute; right: 16px; bottom: 16px; z-index: 2; border: 1.5px solid var(--tinta); background: var(--papel); display: grid; grid-template-columns: auto auto; font-size: 13px; line-height: 1.3; min-width: 260px; }
+.rotulo div { padding: 6px 10px; border-bottom: 1px solid var(--linea); }
+.rotulo div:nth-child(odd) { color: var(--gris); border-right: 1px solid var(--linea); }
+.rotulo div:nth-child(even) { font-family: var(--display); font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; }
+.rotulo div:nth-last-child(-n+2) { border-bottom: 0; }
+
+.capitulos { display: flex; flex-direction: column; }
+.capitulo { min-height: 88vh; display: flex; flex-direction: column; justify-content: center; gap: 18px; padding-block: 40px; }
+.capitulo:first-child { min-height: 70vh; justify-content: flex-start; padding-top: 24px; }
+.capitulo:last-child { min-height: 92vh; }
+.paso { font-family: var(--display); font-weight: 600; font-size: 15px; color: var(--madera-txt); margin: 0; }
+h1, h2 { font-family: var(--display); margin: 0; text-wrap: balance; letter-spacing: -0.025em; }
+h1 { font-size: clamp(42px, 5vw, 64px); font-weight: 800; line-height: 1; }
+h2 { font-size: clamp(32px, 3.6vw, 46px); font-weight: 800; line-height: 1.04; }
+.capitulo p { margin: 0; max-width: 44ch; color: var(--gris); text-wrap: pretty; }
+.datos { margin: 6px 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 2px solid var(--tinta); }
+.datos div { padding: 12px 12px 0 0; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.datos dt { font-size: 14px; color: var(--gris); }
+.datos dd { margin: 0; font-family: var(--display); font-weight: 800; font-size: 26px; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.datos dd small { display: block; font-family: var(--texto); font-weight: 400; font-size: 13px; color: var(--gris); letter-spacing: 0; }
+.pista { font-size: 15px; color: var(--gris); display: inline-flex; align-items: center; gap: 8px; }
+.pista svg { width: 18px; height: 18px; }
+.ahorro { align-self: flex-start; background: var(--madera); color: var(--tinta); font-weight: 600; font-size: 15px; padding: 6px 12px; }
+.boton { align-self: flex-start; display: inline-flex; align-items: center; min-height: 48px; padding: 0 22px; background: var(--pino); color: var(--hueso); font-family: var(--display); font-weight: 700; font-size: 16px; text-decoration: none; }
+.boton:hover { background: var(--pino-osc); }
+.letra-chica { font-size: 13px !important; }
+.sin-3d { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; padding: 24px; text-align: center; color: var(--gris); }
+
+@media (max-width: 900px) {
+  .historia { grid-template-columns: 1fr; gap: 0; padding-top: 0; }
+  .escenario { top: 0; height: 54svh; min-height: 360px; z-index: 3; padding-top: 10px; background: var(--hueso); box-shadow: 0 0 0 24px var(--hueso); clip-path: inset(0 -24px -1px -24px); }
+  .lamina-cabeza { padding: 12px 14px 0; }
+  .superficie-nota, .girar { display: none; }
+  .rotulo { min-width: 0; font-size: 11px; right: 10px; bottom: 10px; }
+  .rotulo div { padding: 4px 8px; }
+  .rotulo .opc { display: none; }
+  .rotulo div:nth-child(5), .rotulo div:nth-child(6) { border-bottom: 0; }
+  .etiqueta { font-size: 11px; padding: 3px 6px; }
+  .etiqueta span { font-size: 10px; }
+  .capitulo, .capitulo:first-child, .capitulo:last-child { min-height: 70svh; padding-top: 28px; justify-content: flex-start; }
+  .datos dd { font-size: 21px; }
+}
+@media (prefers-reduced-motion: reduce) { .superficie, .etiqueta { transition: none; } }
+</style>
+<style>.historia .wrap{max-width:1240px}</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap top__in">
+    <a class="logo" href="./" aria-label="EvoHousing, inicio"><svg viewBox="0 0 34 32" aria-hidden="true"><polygon points="0,13.28 34,3.72 34,1.12 0,10.68" fill="#F3F2EE"/><polygon points="3,13.74 11.6,11.32 11.6,31 3,31" fill="#F3F2EE"/><polygon points="13.2,10.87 21.8,8.45 21.8,31 13.2,31" fill="#F3F2EE"/><polygon points="23.4,8 32,5.58 32,31 23.4,31" fill="#D9A066"/></svg><span>evo<b>housing</b></span></a>
+    <nav class="nav" aria-label="Secciones">
+      <a href="./">Inicio</a>
+      <a href="vivienda-evolutiva.html" aria-current="page">Vivienda evolutiva</a>
+      <a href="como-construimos.html">Cómo construimos</a>
+      <a href="zonas.html">Zonas</a>
+      <a class="nav__cta" href="presupuesto.html">Pedir presupuesto</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap historia">
+  <div class="escenario">
+    <div class="lamina">
+      <div class="lamina-cabeza" aria-hidden="true">
+        <div class="superficie" id="superficie">0<small> m²</small></div>
+        <div class="superficie-nota" id="superficie-nota">51 m² previstos</div>
+      </div>
+      <div id="maqueta" role="img" aria-label="Maqueta 3D de la vivienda: monoambiente, primer dormitorio al costado y segundo dormitorio debajo, que se suman al deslizar">
+        <div class="etiqueta" id="e1">Monoambiente<span>22 m²</span></div>
+        <div class="etiqueta" id="e2">Dormitorio<span>12 m²</span></div>
+        <div class="etiqueta" id="e3">Dormitorio<span>17 m²</span></div>
+        <div class="sin-3d" id="sin-3d">Tu navegador no muestra la maqueta 3D. La casa arranca en 22 m², suma 12 m² y después 17 m², hasta 51 m².</div>
+      </div>
+      <span class="girar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3"/><path d="M18 3v4h-4M6 21v-4h4"/></svg>Arrastrá para girar</span>
+      <div class="rotulo" aria-live="polite">
+        <div class="opc">Proyecto</div><div class="opc">Vivienda evolutiva</div>
+        <div>Etapa</div><div id="r-etapa">Proyecto</div>
+        <div>Inversión acumulada</div><div id="r-inversion">—</div>
+        <div class="opc">Escala</div><div class="opc">Sin escala</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="capitulos">
+    <section class="capitulo" data-paso="0">
+      <h1>Una casa que crece con vos.</h1>
+      <p>Empezás con un monoambiente y le sumás dormitorios cuando los necesitás. Cada ampliación está prevista desde el proyecto, así la casa crece sin perder estética ni calidad.</p>
+      <span class="pista"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v15M6 13l6 6 6-6"/></svg>Deslizá para ver cómo crece</span>
+    </section>
+
+    <section class="capitulo" data-paso="1">
+      <p class="paso">Etapa 1 de 3</p>
+      <h2>Monoambiente</h2>
+      <p>Cocina integrada, baño completo y aberturas de aluminio. Todo lo necesario para empezar a vivir.</p>
+      <dl class="datos">
+        <div><dt>Superficie</dt><dd>22 m²</dd></div>
+        <div><dt>Plazo</dt><dd>30 días</dd></div>
+        <div><dt>Desde</dt><dd>USD 14.718</dd></div>
+      </dl>
+    </section>
+
+    <section class="capitulo" data-paso="2">
+      <p class="paso">Etapa 2 de 3</p>
+      <h2>Primer dormitorio</h2>
+      <p>Un dormitorio independiente que se integra al monoambiente existente.</p>
+      <dl class="datos">
+        <div><dt>Suma</dt><dd>12 m²<small>34 m² en total</small></dd></div>
+        <div><dt>Plazo</dt><dd>20 días</dd></div>
+        <div><dt>Desde</dt><dd>USD 8.028</dd></div>
+      </dl>
+    </section>
+
+    <section class="capitulo" data-paso="3">
+      <p class="paso">Etapa 3 de 3</p>
+      <h2>Segundo dormitorio</h2>
+      <p>La casa completa, ideal para una familia o para renta.</p>
+      <dl class="datos">
+        <div><dt>Suma</dt><dd>17 m²<small>51 m² en total</small></dd></div>
+        <div><dt>Plazo</dt><dd>20 días</dd></div>
+        <div><dt>Desde</dt><dd>USD 11.373</dd></div>
+      </dl>
+    </section>
+
+    <section class="capitulo" data-paso="4">
+      <h2>¿Preferís hacerla de una vez?</h2>
+      <p>Si construís las tres etapas juntas, el m² baja a USD 628 y el plazo total es de 65 días.</p>
+      <dl class="datos">
+        <div><dt>Superficie</dt><dd>51 m²</dd></div>
+        <div><dt>Plazo</dt><dd>65 días</dd></div>
+        <div><dt>Desde</dt><dd>USD 32.028</dd></div>
+      </dl>
+      <span class="ahorro">Ahorrás USD 2.091 frente a hacerla por etapas</span>
+      <a class="boton" href="https://www.instagram.com/evohousing.uy/" target="_blank" rel="noopener">Pedir presupuesto</a>
+      <p class="letra-chica">Precios sin IVA ni leyes sociales. Maqueta esquemática, sin escala.</p>
+    </section>
+  </div>
+</main>
+<footer class="pie">
+  <div class="wrap">
+    <a class="logo" href="./"><svg viewBox="0 0 34 32" aria-hidden="true"><polygon points="0,13.28 34,3.72 34,1.12 0,10.68" fill="#F3F2EE"/><polygon points="3,13.74 11.6,11.32 11.6,31 3,31" fill="#F3F2EE"/><polygon points="13.2,10.87 21.8,8.45 21.8,31 13.2,31" fill="#F3F2EE"/><polygon points="23.4,8 32,5.58 32,31 23.4,31" fill="#D9A066"/></svg><span>evo<b>housing</b></span></a>
+    <nav aria-label="Pie"><a href="./">Inicio</a> <a href="vivienda-evolutiva.html">Vivienda evolutiva</a> <a href="como-construimos.html">Cómo construimos</a> <a href="zonas.html">Zonas</a> <a href="presupuesto.html">Pedir presupuesto</a></nav>
+    <span><a href="https://www.instagram.com/evohousing.uy/" target="_blank" rel="noopener">@evohousing.uy</a> · evohousing.uy@gmail.com</span>
+  </div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function () {
+  const reducir = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fmt = n => n.toLocaleString('es-UY');
+  const sup = document.getElementById('superficie');
+  const nota = document.getElementById('superficie-nota');
+  const rEtapa = document.getElementById('r-etapa');
+  const rInv = document.getElementById('r-inversion');
+  const etiquetas = [null, document.getElementById('e1'), document.getElementById('e2'), document.getElementById('e3')];
+
+  const estados = [
+    { m2: 0,  ancho: 62,  nota: '51 m² previstos', etapa: 'Proyecto', inv: null },
+    { m2: 22, ancho: 75,  nota: 'de 51 m² previstos', etapa: '1 · Monoambiente', inv: 14718 },
+    { m2: 34, ancho: 95,  nota: 'de 51 m² previstos', etapa: '2 · Primer dormitorio', inv: 22746 },
+    { m2: 51, ancho: 125, nota: 'Casa completa', etapa: '3 · Segundo dormitorio', inv: 34119 },
+    { m2: 51, ancho: 125, nota: 'Casa completa', etapa: 'Las tres juntas', inv: 32028 }
+  ];
+
+  // ---------- Maqueta 3D ----------
+  const cont = document.getElementById('maqueta');
+  let m3d = null;
+  try { if (window.THREE) m3d = crearMaqueta(); } catch (e) { m3d = null; }
+  if (!m3d) { document.getElementById('sin-3d').style.display = 'flex'; }
+
+  function crearMaqueta() {
+    const T = THREE;
+    const renderer = new T.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = T.PCFSoftShadowMap;
+    renderer.outputEncoding = T.sRGBEncoding;
+    cont.appendChild(renderer.domElement);
+    const scene = new T.Scene();
+    const centro = new T.Vector3(4.25, 0, 4);
+
+    // Luces
+    scene.add(new T.HemisphereLight(0xffffff, 0xd9d2c4, 0.75));
+    const sol = new T.DirectionalLight(0xfff1dc, 0.85);
+    sol.position.set(-4, 14, 2);
+    sol.target.position.copy(centro);
+    sol.castShadow = true;
+    sol.shadow.mapSize.set(2048, 2048);
+    Object.assign(sol.shadow.camera, { left: -10, right: 10, top: 10, bottom: -10, near: 1, far: 40 });
+    sol.shadow.bias = -0.0005;
+    scene.add(sol, sol.target);
+
+    // Terreno: solo recibe sombras, deja ver la retícula de la lámina
+    const suelo = new T.Mesh(new T.PlaneGeometry(60, 60), new T.ShadowMaterial({ opacity: 0.13 }));
+    suelo.rotation.x = -Math.PI / 2; suelo.receiveShadow = true; scene.add(suelo);
+
+    // Materiales
+    const H = 1.45, E = 0.14; // muros cortados a la altura de un plano, para ver el interior
+    const matMuro = new T.MeshStandardMaterial({ color: 0xf4f1ea, roughness: 0.95 });
+    const matCorte = new T.MeshBasicMaterial({ color: 0x17201d });
+    const murosMats = [matMuro, matMuro, matCorte, matMuro, matMuro, matMuro];
+    const mat = c => new T.MeshStandardMaterial({ color: c, roughness: 0.8 });
+    const blanco = mat(0xfbfbf8), granito = mat(0x9a9894), marco = mat(0x6e5a48), acolchado = mat(0x7d8783), sabana = mat(0xe8e9e4), almohada = mat(0xffffff), vidrio = mat(0x5c6b66);
+
+    // Textura de piso de madera
+    const lienzo = document.createElement('canvas'); lienzo.width = 256; lienzo.height = 256;
+    const g = lienzo.getContext('2d');
+    g.fillStyle = '#9c6b42'; g.fillRect(0, 0, 256, 256);
+    for (let y = 0; y < 256; y += 32) {
+      for (let x = (y / 32 % 2) * 64 - 64; x < 256; x += 128) {
+        const t = 0.85 + Math.random() * 0.25;
+        g.fillStyle = 'rgb(' + Math.round(158 * t) + ',' + Math.round(110 * t) + ',' + Math.round(70 * t) + ')';
+        g.fillRect(x + 1, y + 1, 126, 30);
+      }
+    }
+    function texPiso(w, d) {
+      const tx = new T.CanvasTexture(lienzo);
+      tx.wrapS = tx.wrapT = T.RepeatWrapping; tx.repeat.set(w / 2.4, d / 2.4);
+      tx.encoding = T.sRGBEncoding; tx.anisotropy = 4;
+      return new T.MeshStandardMaterial({ map: tx, roughness: 0.7 });
+    }
+
+    function caja(grupo, x1, z1, x2, z2, y1, y2, material, sombra) {
+      const m = new T.Mesh(new T.BoxGeometry(x2 - x1, y2 - y1, z2 - z1), material);
+      m.position.set((x1 + x2) / 2, (y1 + y2) / 2, (z1 + z2) / 2);
+      m.castShadow = sombra !== false; m.receiveShadow = true;
+      grupo.add(m); return m;
+    }
+    // Muro entre dos puntos alineados a los ejes
+    function muro(grupo, x1, z1, x2, z2, alto) {
+      const h = alto || H, e = E / 2;
+      return x1 === x2 ? caja(grupo, x1 - e, z1 - e, x1 + e, z2 + e, 0.12, h, murosMats)
+                       : caja(grupo, x1 - e, z1 - e, x2 + e, z1 + e, 0.12, h, murosMats);
+    }
+    function piso(grupo, x1, z1, x2, z2) {
+      const m = caja(grupo, x1, z1, x2, z2, 0, 0.12, texPiso(x2 - x1, z2 - z1), false);
+      return m;
+    }
+    function cama(grupo, x1, z1, x2, z2, cabecera) {
+      caja(grupo, x1, z1, x2, z2, 0.12, 0.42, marco);
+      caja(grupo, x1 + 0.04, z1 + 0.04, x2 - 0.04, z2 - 0.04, 0.42, 0.6, sabana);
+      // acolchado en los 2/3 opuestos a la cabecera, almohadas junto a la cabecera
+      if (cabecera === 'z1') {
+        const zc = z1 + (z2 - z1) * 0.33;
+        caja(grupo, x1 + 0.02, zc, x2 - 0.02, z2 - 0.02, 0.6, 0.68, acolchado);
+        const w = (x2 - x1 - 0.3) / 2;
+        caja(grupo, x1 + 0.1, z1 + 0.1, x1 + 0.1 + w, z1 + 0.45, 0.6, 0.74, almohada);
+        caja(grupo, x2 - 0.1 - w, z1 + 0.1, x2 - 0.1, z1 + 0.45, 0.6, 0.74, almohada);
+        caja(grupo, x1, z1 - 0.06, x2, z1, 0.12, 1.05, marco);
+      } else if (cabecera === 'z2') {
+        const zc = z2 - (z2 - z1) * 0.33;
+        caja(grupo, x1 + 0.02, z1 + 0.02, x2 - 0.02, zc, 0.6, 0.68, acolchado);
+        const w = (x2 - x1 - 0.3) / 2;
+        caja(grupo, x1 + 0.1, z2 - 0.45, x1 + 0.1 + w, z2 - 0.1, 0.6, 0.74, almohada);
+        caja(grupo, x2 - 0.1 - w, z2 - 0.45, x2 - 0.1, z2 - 0.1, 0.6, 0.74, almohada);
+        caja(grupo, x1, z2, x2, z2 + 0.06, 0.12, 1.05, marco);
+      } else { // cabecera contra x1
+        const xc = x1 + (x2 - x1) * 0.33;
+        caja(grupo, xc, z1 + 0.02, x2 - 0.02, z2 - 0.02, 0.6, 0.68, acolchado);
+        const w = (z2 - z1 - 0.3) / 2;
+        caja(grupo, x1 + 0.1, z1 + 0.1, x1 + 0.45, z1 + 0.1 + w, 0.6, 0.74, almohada);
+        caja(grupo, x1 + 0.1, z2 - 0.1 - w, x1 + 0.45, z2 - 0.1, 0.6, 0.74, almohada);
+        caja(grupo, x1 - 0.06, z1, x1, z2, 0.12, 1.05, marco);
+      }
+    }
+
+    // Etapa 1 · Monoambiente 5,5 × 4,0 m (22 m²) con baño ampliado
+    const g1 = new T.Group();
+    piso(g1, 0, 0, 5.5, 4);
+    muro(g1, 0, 0, 5.5, 0); muro(g1, 0, 0, 0, 4);
+    muro(g1, 0, 4, 4.3, 4); muro(g1, 5.1, 4, 5.5, 4);
+    muro(g1, 5.5, 0, 5.5, 3.0); muro(g1, 5.5, 3.8, 5.5, 4);
+    const tapa2 = muro(g1, 5.5, 3.0, 5.5, 3.8);   // se abre al sumar el primer dormitorio
+    const tapa3 = muro(g1, 4.3, 4, 5.1, 4);       // se abre al sumar el segundo dormitorio
+    muro(g1, 3.8, 0, 3.8, 2.8); muro(g1, 3.8, 2.8, 4.2, 2.8); muro(g1, 4.9, 2.8, 5.5, 2.8);
+    // cocina, barra, cama, baño
+    caja(g1, 1.4, 0.06, 3.6, 0.66, 0.12, 0.98, blanco); caja(g1, 1.4, 0.06, 3.6, 0.68, 0.98, 1.02, granito);
+    caja(g1, 2.5, 1.5, 3.5, 1.95, 0.12, 1.0, blanco);
+    cama(g1, 0.08, 2.2, 2.0, 3.75, 'x1');
+    caja(g1, 5.0, 0.12, 5.4, 0.62, 0.12, 0.52, blanco);
+    caja(g1, 3.9, 0.06, 4.5, 0.5, 0.12, 0.85, blanco);
+    caja(g1, 3.9, 1.6, 4.9, 2.7, 0.12, 0.2, blanco);
+    caja(g1, 3.88, 1.58, 4.92, 1.6, 0.2, 1.4, vidrio);
+
+    // Etapa 2 · Primer dormitorio 3,0 × 4,0 m (12 m²) al costado
+    const g2 = new T.Group();
+    piso(g2, 5.5, 0, 8.5, 4);
+    muro(g2, 5.5, 0, 8.5, 0); muro(g2, 8.5, 0, 8.5, 4); muro(g2, 5.5, 4, 8.5, 4);
+    cama(g2, 6.3, 0.12, 7.7, 2.05, 'z1');
+    caja(g2, 5.8, 0.1, 6.2, 0.5, 0.12, 0.6, marco); caja(g2, 7.8, 0.1, 8.2, 0.5, 0.12, 0.6, marco);
+
+    // Etapa 3 · Segundo dormitorio 4,25 × 4,0 m (17 m²) debajo del primero
+    const g3 = new T.Group();
+    piso(g3, 4.25, 4, 8.5, 8);
+    muro(g3, 4.25, 4, 4.25, 8); muro(g3, 4.25, 8, 8.5, 8); muro(g3, 8.5, 4, 8.5, 8);
+    cama(g3, 5.9, 5.95, 7.4, 7.88, 'z2');
+    caja(g3, 5.4, 7.4, 5.8, 7.8, 0.12, 0.6, marco); caja(g3, 7.5, 7.4, 7.9, 7.8, 0.12, 0.6, marco);
+
+    const grupos = [null, g1, g2, g3];
+    grupos.slice(1).forEach(gr => { gr.visible = false; scene.add(gr); });
+
+    // Huella prevista: contornos punteados en el terreno
+    const prev = new T.Group();
+    const matPrev = new T.LineDashedMaterial({ color: 0xd9a066, dashSize: 0.22, gapSize: 0.16 });
+    function contorno(x1, z1, x2, z2) {
+      const pts = [[x1, z1], [x2, z1], [x2, z2], [x1, z2], [x1, z1]].map(p => new T.Vector3(p[0], 0.02, p[1]));
+      const l = new T.Line(new T.BufferGeometry().setFromPoints(pts), matPrev);
+      l.computeLineDistances(); prev.add(l); return l;
+    }
+    const huellas = [null, contorno(0, 0, 5.5, 4), contorno(5.5, 0, 8.5, 4), contorno(4.25, 4, 8.5, 8)];
+    scene.add(prev);
+
+    // Cámara ortográfica, vista axonométrica
+    const cam = new T.OrthographicCamera(-1, 1, 1, -1, 0.1, 100);
+    let az = -0.72, azObj = az;
+    const elev = 1.35;
+    function encuadre() {
+      const w = cont.clientWidth || 1, h = cont.clientHeight || 1, a = w / h;
+      let mh = Math.max(5.6, 7.2 / a);
+      cam.left = -mh * a; cam.right = mh * a; cam.top = mh * 1.02; cam.bottom = -mh * 0.98;
+      cam.updateProjectionMatrix(); renderer.setSize(w, h, false);
+    }
+    function ubicarCamara() {
+      const R = 16;
+      cam.position.set(centro.x + R * Math.sin(az), R * elev, centro.z + R * Math.cos(az));
+      cam.lookAt(centro.x, 0.2, centro.z);
+    }
+    encuadre(); ubicarCamara();
+    new ResizeObserver(encuadre).observe(cont);
+
+    // Girar arrastrando (solo horizontal; el vertical sigue scrolleando la página)
+    let arrastre = null;
+    cont.addEventListener('pointerdown', e => { arrastre = { x: e.clientX, az: azObj }; cont.classList.add('arrastrando'); cont.setPointerCapture(e.pointerId); });
+    cont.addEventListener('pointermove', e => { if (arrastre) azObj = arrastre.az - (e.clientX - arrastre.x) * 0.008; });
+    const soltar = () => { arrastre = null; cont.classList.remove('arrastrando'); };
+    cont.addEventListener('pointerup', soltar); cont.addEventListener('pointercancel', soltar);
+
+    // Animaciones de montaje
+    const anims = [];
+    function animar(obj, prop, desde, hasta, dur, ease, alTerminar) {
+      for (let i = anims.length - 1; i >= 0; i--) if (anims[i].obj === obj && anims[i].prop === prop) anims.splice(i, 1);
+      if (reducir) { obj[prop] = hasta; if (alTerminar) alTerminar(); return; }
+      anims.push({ obj, prop, desde, hasta, t0: performance.now(), dur, ease, alTerminar });
+    }
+    const salida = k => 1 - Math.pow(1 - k, 3);
+    const aterrizaje = k => { const c = 1.25; return 1 + (c + 1) * Math.pow(k - 1, 3) + c * Math.pow(k - 1, 2); };
+
+    function setPaso(n) {
+      for (let i = 1; i <= 3; i++) {
+        const gr = grupos[i], on = n >= i;
+        if (on && !gr.visible) {
+          gr.visible = true; gr.position.y = 9;
+          animar(gr.position, 'y', 9, 0, 1300, aterrizaje);
+        } else if (!on && gr.visible) {
+          animar(gr.position, 'y', gr.position.y, 9, 600, salida, () => { gr.visible = false; });
+        }
+        huellas[i].visible = !on;
+      }
+      tapa2.visible = !(n >= 2);
+      tapa3.visible = !(n >= 3);
+    }
+
+    const tmp = new T.Vector3();
+    const centros = [null, [2.2, 1.0, 1.6], [7.0, 1.0, 2.9], [5.4, 1.0, 5.6]];
+    function frame(t) {
+      for (let i = anims.length - 1; i >= 0; i--) {
+        const a = anims[i], k = Math.min(1, (t - a.t0) / a.dur);
+        a.obj[a.prop] = a.desde + (a.hasta - a.desde) * a.ease(k);
+        if (k >= 1) { anims.splice(i, 1); if (a.alTerminar) a.alTerminar(); }
+      }
+      az += (azObj - az) * 0.15; ubicarCamara();
+      renderer.render(scene, cam);
+      const w = cont.clientWidth, h = cont.clientHeight;
+      for (let i = 1; i <= 3; i++) {
+        const c = centros[i]; tmp.set(c[0], c[1] + grupos[i].position.y, c[2]).project(cam);
+        etiquetas[i].style.left = ((tmp.x + 1) / 2 * w) + 'px';
+        etiquetas[i].style.top = ((1 - tmp.y) / 2 * h) + 'px';
+      }
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+    return { setPaso };
+  }
+
+  // ---------- Pasos ----------
+  let actual = -1, valorM2 = 0, cuenta = null;
+  function contar(hasta) {
+    if (cuenta) cancelAnimationFrame(cuenta);
+    const desde = valorM2, t0 = performance.now(), dur = reducir ? 0 : 900;
+    function paso(t) {
+      const k = dur ? Math.min(1, (t - t0) / dur) : 1;
+      valorM2 = Math.round(desde + (hasta - desde) * (1 - Math.pow(1 - k, 3)));
+      sup.firstChild.nodeValue = valorM2;
+      if (k < 1) cuenta = requestAnimationFrame(paso);
+    }
+    cuenta = requestAnimationFrame(paso);
+  }
+  function ir(n) {
+    if (n === actual) return;
+    actual = n;
+    const e = estados[n];
+    sup.style.setProperty('--ancho', e.ancho);
+    contar(e.m2);
+    nota.textContent = e.nota;
+    rEtapa.textContent = e.etapa;
+    rInv.textContent = e.inv ? 'USD ' + fmt(e.inv) : '—';
+    for (let i = 1; i <= 3; i++) {
+      etiquetas[i].classList.toggle('visible', n >= i);
+      etiquetas[i].classList.toggle('nueva', n === i);
+    }
+    if (m3d) m3d.setPaso(n);
+  }
+  const io = new IntersectionObserver(function (entradas) {
+    entradas.forEach(function (en) { if (en.isIntersecting) ir(Number(en.target.dataset.paso)); });
+  }, { rootMargin: '-55% 0px -40% 0px' });
+  document.querySelectorAll('.capitulo').forEach(c => io.observe(c));
+  ir(0);
+  setTimeout(function () { if (actual === 0 && window.scrollY < 40) ir(1); }, 700);
+})();
+</script>
+
+</body>
+</html>

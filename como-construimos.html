@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cómo construimos · EvoHousing</title>
+<meta name="description" content="Fundación, fabricación en taller, montaje en tu terreno y terminaciones: así construimos en steel framing.">
+<link rel="canonical" href="https://evohousing.github.io/como-construimos.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Cómo construimos · EvoHousing">
+<meta property="og:description" content="Fundación, fabricación en taller, montaje en tu terreno y terminaciones: así construimos en steel framing.">
+<meta property="og:image" content="https://evohousing.github.io/img/casa.jpg">
+<meta property="og:url" content="https://evohousing.github.io/como-construimos.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Figtree:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="css/estilos.css">
+<style>
+.pasos { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.paso { display: grid; grid-template-columns: 80px minmax(0, 5fr) minmax(0, 6fr); gap: 32px; padding-block: 40px; border-top: 2px solid var(--tinta); align-items: start; }
+.paso__num { font-family: var(--display); font-weight: 800; font-size: 48px; line-height: 1; color: var(--pino); }
+.paso__txt { display: flex; flex-direction: column; gap: 12px; }
+.paso__txt p { color: var(--gris); }
+.paso__img img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+.paso__img.doble { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.paso__img.doble img { aspect-ratio: 3 / 4; }
+.paso__dibujo { background: var(--blanco); border: 1px solid var(--linea); aspect-ratio: 16 / 10; display: flex; align-items: center; justify-content: center; }
+.paso__dibujo svg { width: 46%; height: auto; }
+@media (max-width: 860px) { .paso { grid-template-columns: 56px minmax(0, 1fr); } .paso__img, .paso__dibujo { grid-column: 1 / -1; } .paso__num { font-size: 36px; } }
+.beneficios { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; }
+.beneficios li { display: flex; flex-direction: column; gap: 10px; }
+.beneficios svg { width: 34px; height: 34px; }
+.beneficios p { color: var(--gris); font-size: 16px; }
+@media (max-width: 900px) { .beneficios { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) { .beneficios { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap top__in">
+    <a class="logo" href="./" aria-label="EvoHousing, inicio"><svg viewBox="0 0 34 32" aria-hidden="true"><polygon points="0,13.28 34,3.72 34,1.12 0,10.68" fill="#F3F2EE"/><polygon points="3,13.74 11.6,11.32 11.6,31 3,31" fill="#F3F2EE"/><polygon points="13.2,10.87 21.8,8.45 21.8,31 13.2,31" fill="#F3F2EE"/><polygon points="23.4,8 32,5.58 32,31 23.4,31" fill="#D9A066"/></svg><span>evo<b>housing</b></span></a>
+    <nav class="nav" aria-label="Secciones">
+      <a href="./">Inicio</a>
+      <a href="vivienda-evolutiva.html">Vivienda evolutiva</a>
+      <a href="como-construimos.html" aria-current="page">Cómo construimos</a>
+      <a href="zonas.html">Zonas</a>
+      <a class="nav__cta" href="presupuesto.html">Pedir presupuesto</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <section class="pagina-cabeza">
+    <div class="wrap">
+      <h1>Del taller a tu terreno.</h1>
+      <p>Fabricamos la estructura bajo techo y la montamos en el sitio. Así ganamos precisión y acortamos los tiempos de obra.</p>
+    </div>
+  </section>
+
+  <section class="band" aria-label="Proceso">
+    <div class="wrap">
+      <ol class="pasos">
+        <li class="paso">
+          <span class="paso__num">1</span>
+          <div class="paso__txt"><h2>Proyecto</h2><p>Elegís uno de nuestros diseños o nos traés el tuyo. Te pasamos el precio por m² según el tamaño de la casa.</p><a class="link" href="presupuesto.html">Pedir presupuesto</a></div>
+          <div class="paso__dibujo"><svg viewBox="0 0 56 44" fill="none" stroke="#22463C" stroke-width="1.6" aria-hidden="true"><rect x="2" y="2" width="52" height="40"/><path d="M2 22h30V2M32 30v12M20 22v-8"/><path d="M38 30h16" stroke-dasharray="3 3"/></svg></div>
+        </li>
+        <li class="paso">
+          <span class="paso__num">2</span>
+          <div class="paso__txt"><h2>Fundación</h2><p>Platea de hormigón o sistema mixto con pilares, según el terreno y el proyecto. Se diseña pensando en las ampliaciones futuras.</p></div>
+          <div class="paso__dibujo"><svg viewBox="0 0 56 44" fill="none" stroke="#22463C" stroke-width="1.6" aria-hidden="true"><rect x="2" y="22" width="52" height="8"/><path d="M8 30v12M28 30v12M48 30v12"/><path d="M8 22V6h40v16" stroke-dasharray="4 4"/></svg></div>
+        </li>
+        <li class="paso">
+          <span class="paso__num">3</span>
+          <div class="paso__txt"><h2>Fabricación en taller</h2><p>Los bastidores de steel framing, perfiles de acero galvanizado, se arman bajo techo: medidas precisas, control de calidad y sin depender del clima.</p></div>
+          <div class="paso__dibujo"><svg viewBox="0 0 56 44" fill="none" stroke="#22463C" stroke-width="1.6" aria-hidden="true"><rect x="2" y="2" width="52" height="40"/><path d="M15 2v40M28 2v40M41 2v40M2 22h52"/><path d="M2 2l13 20M28 22l13 20"/></svg></div>
+        </li>
+        <li class="paso">
+          <span class="paso__num">4</span>
+          <div class="paso__txt"><h2>Montaje en tu terreno</h2><p>Los paneles llegan listos y se montan sobre la fundación. Menos días de obra, menos desperdicio y una obra más limpia.</p></div>
+          <div class="paso__img"><img src="img/obras/estructura-taller.jpg" alt="Paneles de steel framing montados en obra, con placas OSB" width="1800" height="806" loading="lazy" style="object-position: 30% 50%"></div>
+        </li>
+        <li class="paso">
+          <span class="paso__num">5</span>
+          <div class="paso__txt"><h2>Instalaciones y terminaciones</h2><p>Instalación eléctrica y sanitaria, cocina, baño, cielorraso, pisos y aberturas de aluminio. La casa se entrega lista para vivir.</p></div>
+          <div class="paso__img doble"><img src="img/obras/cocina.jpg" alt="Cocina terminada" width="1010" height="1180" loading="lazy"><img src="img/obras/dormitorio.jpg" alt="Dormitorio terminado" width="646" height="1200" loading="lazy"></div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="band band--white" aria-labelledby="t-por-que">
+    <div class="wrap">
+      <div class="section-head"><div><h2 id="t-por-que">Por qué steel framing</h2></div></div>
+      <ul class="beneficios">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#22463C" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><h3>Menos tiempo de obra</h3><p>Un monoambiente de 22 m² se ejecuta en 30 días.</p></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#22463C" stroke-width="1.6" aria-hidden="true"><rect x="3" y="8" width="10" height="13"/><path d="M17 4v8M13 8h8"/></svg><h3>Ampliaciones simples</h3><p>La casa puede crecer por etapas, sin rehacer lo construido.</p></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#22463C" stroke-width="1.6" aria-hidden="true"><path d="M10 4a2 2 0 0 1 4 0v10a4 4 0 1 1-4 0z"/><path d="M12 9v8"/></svg><h3>Confort térmico</h3><p>Muros con aislación que ayudan a mantener la temperatura.</p></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#22463C" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18"/><path d="M8 12l3 3 5-6"/></svg><h3>Calidad controlada</h3><p>La estructura se fabrica en taller, con medidas exactas.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band band--pino">
+    <div class="wrap" style="display:flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px">
+      <h2 style="max-width: 22ch">¿Querés saber cuánto saldría tu casa?</h2>
+      <a class="btn btn--madera" href="presupuesto.html">Pedir presupuesto</a>
+    </div>
+  </section>
+</main>
+<footer class="pie">
+  <div class="wrap">
+    <a class="logo" href="./"><svg viewBox="0 0 34 32" aria-hidden="true"><polygon points="0,13.28 34,3.72 34,1.12 0,10.68" fill="#F3F2EE"/><polygon points="3,13.74 11.6,11.32 11.6,31 3,31" fill="#F3F2EE"/><polygon points="13.2,10.87 21.8,8.45 21.8,31 13.2,31" fill="#F3F2EE"/><polygon points="23.4,8 32,5.58 32,31 23.4,31" fill="#D9A066"/></svg><span>evo<b>housing</b></span></a>
+    <nav aria-label="Pie"><a href="./">Inicio</a> <a href="vivienda-evolutiva.html">Vivienda evolutiva</a> <a href="como-construimos.html">Cómo construimos</a> <a href="zonas.html">Zonas</a> <a href="presupuesto.html">Pedir presupuesto</a></nav>
+    <span><a href="https://www.instagram.com/evohousing.uy/" target="_blank" rel="noopener">@evohousing.uy</a> · evohousing.uy@gmail.com</span>
+  </div>
+</footer>
+
+</body>
+</html>
