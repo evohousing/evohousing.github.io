@@ -108,7 +108,21 @@ h2 { font-size: clamp(32px, 3.6vw, 46px); font-weight: 800; line-height: 1.04; }
 }
 @media (prefers-reduced-motion: reduce) { .superficie, .etiqueta { transition: none; } }
 </style>
-<style>.historia .wrap{max-width:1240px}</style>
+<style>
+.historia .wrap{max-width:1240px}
+.modelos-barra { background: var(--pino); color: var(--hueso); padding-block: 28px 0; }
+.modelos-barra .wrap { max-width: 1240px; display: flex; flex-direction: column; gap: 20px; }
+.modelos-barra h1 { font-size: clamp(30px, 4vw, 44px); }
+.modelos-tabs { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+.modelos-tabs::-webkit-scrollbar { display: none; }
+.tab { flex: 0 0 auto; display: flex; flex-direction: column; gap: 2px; text-align: left; padding: 14px 20px 16px; border: 0; font: inherit; color: var(--sobre-pino); background: rgba(255,255,255,.06); text-decoration: none; min-width: 200px; }
+.tab strong { font-family: var(--display); font-size: 18px; font-weight: 800; color: inherit; }
+.tab span { font-size: 13px; }
+.tab[aria-current] { background: var(--hueso); color: var(--tinta); }
+.tab[aria-current] span { color: var(--gris); }
+.tab:disabled { cursor: not-allowed; opacity: .75; }
+@media (max-width: 900px) { .tab { min-width: 170px; padding: 12px 14px; } }
+</style>
 </head>
 <body>
 <header class="top">
@@ -123,7 +137,17 @@ h2 { font-size: clamp(32px, 3.6vw, 46px); font-weight: 800; line-height: 1.04; }
     </nav>
   </div>
 </header>
-<main class="wrap historia">
+<section class="modelos-barra" aria-label="Modelos">
+  <div class="wrap">
+    <h1>Vivienda evolutiva</h1>
+    <div class="modelos-tabs" role="list">
+      <a role="listitem" class="tab" href="#evohouse-1" aria-current="true"><strong>Evohouse 1</strong><span>Una planta · 22 a 51 m²</span></a>
+      <button role="listitem" class="tab" type="button" disabled><strong>Evohouse 2</strong><span>Dos pisos · Próximamente</span></button>
+      <button role="listitem" class="tab" type="button" disabled><strong>Evoloft</strong><span>Planta baja de Evohouse 2 · Próximamente</span></button>
+    </div>
+  </div>
+</section>
+<main class="wrap historia" id="evohouse-1">
   <div class="escenario">
     <div class="lamina">
       <div class="lamina-cabeza" aria-hidden="true">
@@ -138,7 +162,7 @@ h2 { font-size: clamp(32px, 3.6vw, 46px); font-weight: 800; line-height: 1.04; }
       </div>
       <span class="girar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3"/><path d="M18 3v4h-4M6 21v-4h4"/></svg>Arrastrá para girar</span>
       <div class="rotulo" aria-live="polite">
-        <div class="opc">Proyecto</div><div class="opc">Vivienda evolutiva</div>
+        <div class="opc">Proyecto</div><div class="opc">Evohouse 1</div>
         <div>Etapa</div><div id="r-etapa">Proyecto</div>
         <div>Inversión acumulada</div><div id="r-inversion">—</div>
         <div class="opc">Escala</div><div class="opc">Sin escala</div>
@@ -148,6 +172,7 @@ h2 { font-size: clamp(32px, 3.6vw, 46px); font-weight: 800; line-height: 1.04; }
 
   <div class="capitulos">
     <section class="capitulo" data-paso="0">
+      <p class="paso">Evohouse 1 · una planta</p>
       <h1>Una casa que crece con vos.</h1>
       <p>Empezás con un monoambiente y le sumás dormitorios cuando los necesitás. Cada ampliación está prevista desde el proyecto, así la casa crece sin perder estética ni calidad.</p>
       <span class="pista"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v15M6 13l6 6 6-6"/></svg>Deslizá para ver cómo crece</span>

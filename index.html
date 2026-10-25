@@ -24,13 +24,41 @@
 .hero__img { min-height: 460px; position: relative; }
 .hero__img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 45% 60%; }
 @media (max-width: 860px) { .hero { grid-template-columns: 1fr; } .hero__text { padding-right: max(20px, env(safe-area-inset-right, 0px)); } .hero__img { min-height: 0; aspect-ratio: 4 / 3; order: -1; } }
-.camino { background: var(--blanco); display: flex; flex-direction: column; min-width: 0; }
-.camino__img { aspect-ratio: 16 / 10; overflow: hidden; background: var(--blanco); display: flex; align-items: center; justify-content: center; }
-.camino__img img { width: 100%; height: 100%; object-fit: cover; }
-.camino__img.contener img { object-fit: contain; padding: 16px; }
-.camino__txt { padding: 26px 28px 30px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
-.camino__txt p { color: var(--gris); }
-.camino__txt .link { margin-top: auto; }
+.datos-clave { background: var(--blanco); border-bottom: 1px solid var(--linea); }
+.datos-clave ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.datos-clave li { padding: 26px 24px 26px 0; display: flex; flex-direction: column; gap: 2px; }
+.datos-clave li + li { padding-left: 24px; border-left: 1px solid var(--linea); }
+.datos-clave strong { font-family: var(--display); font-weight: 800; font-size: 26px; letter-spacing: -0.01em; line-height: 1.1; }
+.datos-clave span { font-size: 15px; color: var(--gris-2); }
+@media (max-width: 860px) { .datos-clave ul { grid-template-columns: 1fr 1fr; } .datos-clave li:nth-child(3) { padding-left: 0; border-left: 0; } .datos-clave li:nth-child(n+3) { border-top: 1px solid var(--linea); } }
+.modelos { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 20px; }
+.modelo { background: var(--blanco); display: flex; flex-direction: column; min-width: 0; }
+.modelo__img { aspect-ratio: 16 / 10; display: flex; align-items: center; justify-content: center; padding: 16px; background: var(--blanco); border-bottom: 1px solid var(--linea); }
+.modelo__img img { max-height: 100%; width: auto; }
+.modelo__img svg { width: 70%; height: auto; color: var(--linea); }
+.modelo__txt { padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.modelo__txt p { color: var(--gris); font-size: 16px; }
+.modelo__txt .link { margin-top: auto; }
+.estado { align-self: flex-start; font-size: 13px; font-weight: 600; padding: 4px 10px; background: var(--hueso); color: var(--gris-2); border: 1px solid var(--linea); }
+.estado--ok { background: var(--pino); color: var(--hueso); border-color: var(--pino); }
+@media (max-width: 960px) { .modelos { grid-template-columns: 1fr 1fr; } .modelos .modelo:first-child { grid-column: 1 / -1; } }
+@media (max-width: 560px) { .modelos { grid-template-columns: 1fr; } }
+.propio { margin-top: 20px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); background: var(--pino); color: var(--hueso); }
+.propio img { width: 100%; height: 100%; object-fit: cover; min-height: 260px; }
+.propio div { padding: clamp(24px, 4vw, 44px); display: flex; flex-direction: column; justify-content: center; gap: 14px; }
+.propio p { color: var(--sobre-pino); }
+@media (max-width: 760px) { .propio { grid-template-columns: 1fr; } }
+.proceso { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0; counter-reset: paso; }
+.proceso li { display: flex; flex-direction: column; gap: 10px; padding: 0 18px 0 0; position: relative; }
+.proceso li::before { content: ""; position: absolute; left: 0; right: 0; top: 30px; border-top: 2px dashed var(--madera); z-index: 0; }
+.proceso li:last-child::before { right: auto; width: 60px; }
+.proceso .ic { position: relative; z-index: 1; width: 60px; height: 60px; background: var(--hueso); border: 2px solid var(--pino); color: var(--pino); display: flex; align-items: center; justify-content: center; }
+.proceso .ic svg { width: 36px; height: 36px; }
+.proceso b { font-family: var(--display); font-size: 14px; color: var(--madera-txt); font-weight: 600; }
+.proceso h3 { font-size: 18px; }
+.proceso p { font-size: 15px; color: var(--gris); }
+@media (max-width: 960px) { .proceso { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 32px; } .proceso li:nth-child(3)::before { right: auto; width: 60px; } }
+@media (max-width: 560px) { .proceso { grid-template-columns: 1fr; row-gap: 0; } .proceso li { display: grid; grid-template-columns: 60px 1fr; column-gap: 16px; padding: 0 0 22px; } .proceso li > :not(.ic) { grid-column: 2; } .proceso .ic { grid-row: 1 / span 3; } .proceso li::before { left: 30px; right: auto; top: 0; bottom: 0; width: 0; border-top: 0; border-left: 2px dashed var(--madera); } .proceso li:last-child::before { display: none; } }
 .obra { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 .obra img { aspect-ratio: 4 / 3; object-fit: cover; width: 100%; }
 @media (max-width: 760px) { .obra { grid-template-columns: 1fr 1fr; } .obra figure:first-child { grid-column: span 2; } }
@@ -40,13 +68,18 @@
 .terminaciones .texto { display: flex; flex-direction: column; gap: 14px; padding-top: 8px; }
 .terminaciones .texto p { color: var(--gris); }
 @media (max-width: 860px) { .terminaciones { grid-template-columns: 1fr; } }
-.secciones { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--linea-pino); }
-.secciones a { display: flex; flex-direction: column; gap: 10px; padding: 32px 32px 32px 0; text-decoration: none; border-bottom: 1px solid var(--linea-pino); }
-.secciones a + a { padding-left: 32px; border-left: 1px solid var(--linea-pino); }
-.secciones a p { color: var(--sobre-pino); }
-.secciones a span { font-family: var(--display); font-weight: 700; color: var(--madera); }
-.secciones a:hover h3 { text-decoration: underline; text-decoration-color: var(--madera); text-underline-offset: 5px; }
-@media (max-width: 760px) { .secciones { grid-template-columns: 1fr; } .secciones a + a { padding-left: 0; border-left: 0; } }
+.faq { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: 40px; }
+@media (max-width: 860px) { .faq { grid-template-columns: 1fr; gap: 20px; } }
+.faq details { border-top: 1px solid var(--linea); }
+.faq details:last-child { border-bottom: 1px solid var(--linea); }
+.faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 16px; align-items: center; padding: 20px 0; font-family: var(--display); font-weight: 700; font-size: 20px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: ""; width: 12px; height: 12px; flex-shrink: 0; border-right: 2px solid var(--pino); border-bottom: 2px solid var(--pino); transform: rotate(45deg) translateY(-3px); transition: transform .2s; }
+.faq details[open] summary::after { transform: rotate(225deg) translateY(-3px); }
+.faq details p { padding: 0 0 22px; color: var(--gris); max-width: 62ch; }
+@media (prefers-reduced-motion: reduce) { .faq summary::after { transition: none; } }
+.cierre .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px; }
+.cierre p { color: var(--sobre-pino); margin-top: 10px; }
 </style>
 </head>
 <body>
@@ -67,16 +100,64 @@
     <div class="hero__text">
       <p class="eyebrow" style="color: var(--madera)">Construcción en steel framing</p>
       <h1 id="titulo">Un hogar que crece con vos.</h1>
-      <p class="lead">Casas en steel framing que fabricamos en taller y montamos en tu terreno. Elegí uno de nuestros diseños o traenos tu proyecto.</p>
+      <p class="lead">Casas en steel framing que fabricamos en taller y montamos en tu terreno. Elegí uno de nuestros modelos o traenos tu proyecto.</p>
       <div class="hero__ctas">
         <a class="btn btn--madera" href="presupuesto.html">Pedir presupuesto</a>
-        <a class="btn btn--line" href="vivienda-evolutiva.html">Ver vivienda evolutiva</a>
+        <a class="btn btn--line" href="vivienda-evolutiva.html">Ver modelos</a>
       </div>
     </div>
     <div class="hero__img"><img src="img/obras/estructura-sitio.jpg" alt="Estructura metálica montada en obra, contra el cielo" width="1800" height="1350"></div>
   </section>
 
-  <section class="band" aria-labelledby="t-precio">
+  <section class="datos-clave" aria-label="En resumen">
+    <div class="wrap">
+      <ul>
+        <li><strong>Desde USD 628</strong><span>el m², según el tamaño</span></li>
+        <li><strong>30 días</strong><span>para un monoambiente de 22 m²</span></li>
+        <li><strong>Tu proyecto</strong><span>o uno de nuestros modelos</span></li>
+        <li><strong>Maldonado y Canelones</strong><span>de Ciudad de la Costa a Garzón</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="t-modelos">
+    <div class="wrap">
+      <div class="section-head">
+        <div><p class="eyebrow">Modelos</p><h2 id="t-modelos">Elegí un modelo o traenos tu proyecto.</h2></div>
+        <p class="lead">Nuestros modelos están pensados para construirse de una vez o por etapas.</p>
+      </div>
+      <div class="modelos">
+        <article class="modelo">
+          <div class="modelo__img"><img src="img/etapa-1-2-3.jpg" alt="Maqueta de Evohouse 1 con dos dormitorios" width="1128" height="964" loading="lazy"></div>
+          <div class="modelo__txt">
+            <span class="estado estado--ok">Disponible</span>
+            <h3>Evohouse 1</h3>
+            <p>Vivienda evolutiva de una planta: arranca como monoambiente de 22 m² y crece a 34 o 51 m² con uno o dos dormitorios.</p>
+            <p class="nota">Imagen ilustrativa</p>
+            <a class="link" href="vivienda-evolutiva.html">Ver cómo crece</a>
+          </div>
+        </article>
+        <article class="modelo">
+          <div class="modelo__img"><svg viewBox="0 0 120 80" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 76V40h80v36M20 40V8h56v32"/><path d="M14 8h68M14 40h92M8 76h104"/><path d="M30 52h14v24M60 52h28v12H60zM30 18h18v12H30zM56 18h12v12H56z"/></svg></div>
+          <div class="modelo__txt"><span class="estado">Próximamente</span><h3>Evohouse 2</h3><p>Vivienda de dos pisos.</p></div>
+        </article>
+        <article class="modelo">
+          <div class="modelo__img"><svg viewBox="0 0 120 80" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 76V40h80v36"/><path d="M14 40h92M8 76h104"/><path d="M30 52h14v24M60 52h28v12H60z"/></svg></div>
+          <div class="modelo__txt"><span class="estado">Próximamente</span><h3>Evoloft</h3><p>La planta baja de Evohouse 2, en un solo nivel.</p></div>
+        </article>
+      </div>
+      <div class="propio">
+        <img src="img/obras/proyecto-bim.jpg" alt="Modelo 3D de una estructura de steel framing en la computadora" width="1430" height="820" loading="lazy">
+        <div>
+          <h3 style="font-size: 28px">¿Ya tenés tu proyecto?</h3>
+          <p>Traenos tus planos o tu idea. Lo modelamos en 3D, lo construimos con el mismo sistema y te pasamos el precio por m² según el tamaño.</p>
+          <a class="btn btn--madera" href="presupuesto.html" style="align-self: flex-start">Pedir presupuesto</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--white" aria-labelledby="t-precio">
     <div class="wrap">
       <div class="section-head">
         <div><p class="eyebrow">Precios</p><h2 id="t-precio">El precio se calcula por metro cuadrado.</h2></div>
@@ -91,34 +172,24 @@
     </div>
   </section>
 
-  <section class="band band--white" aria-labelledby="t-caminos">
+  <section class="band" aria-labelledby="t-proceso">
     <div class="wrap">
       <div class="section-head">
-        <div><p class="eyebrow">Diseños</p><h2 id="t-caminos">Elegí uno de nuestros diseños o traenos el tuyo.</h2></div>
+        <div><p class="eyebrow">Cómo construimos</p><h2 id="t-proceso">Del taller a tu terreno, en seis pasos.</h2></div>
+        <a class="link" href="como-construimos.html">Ver el proceso con fotos</a>
       </div>
-      <div class="grilla-2">
-        <article class="camino" style="background: var(--hueso)">
-          <div class="camino__img contener"><img src="img/etapa-1-2-3.jpg" alt="Maqueta de la vivienda de 51 m² con dos dormitorios" width="1128" height="964" loading="lazy"></div>
-          <div class="camino__txt">
-            <h3>Diseños listos</h3>
-            <p>Un monoambiente de 22 m², con un dormitorio de 34 m² o con dos dormitorios de 51 m². Se construyen de una vez o por etapas.</p>
-            <p class="nota">Imagen ilustrativa</p>
-            <a class="link" href="vivienda-evolutiva.html">Ver vivienda evolutiva</a>
-          </div>
-        </article>
-        <article class="camino" style="background: var(--hueso)">
-          <div class="camino__img"><img src="img/obras/estructura-taller.jpg" alt="Paneles de steel framing con placas OSB montados en obra" width="1800" height="806" loading="lazy" style="object-position: 30% 50%"></div>
-          <div class="camino__txt">
-            <h3>Tu proyecto</h3>
-            <p>¿Ya tenés planos o una idea? La construimos con el mismo sistema y te pasamos el precio por m² según el tamaño.</p>
-            <a class="link" href="presupuesto.html">Pedir presupuesto</a>
-          </div>
-        </article>
-      </div>
+      <ol class="proceso">
+        <li><span class="ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="7" width="38" height="26"/><path d="M18 41h12M24 33v8"/><path d="M11 27V13h12v8h8v6z"/><path d="M23 13v8"/></svg></span><b>Paso 1</b><h3>Proyecto</h3><p>Elegís uno de nuestros modelos o nos traés el tuyo.</p></li>
+<li><span class="ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M4 30l14-10h26L30 30z"/><path d="M4 30v6h26v-6M30 36l14-10v-6"/><path d="M11 25h26M15 22.5h26M18 30l12-10M24 30l12-10M12 30l12-10"/></svg></span><b>Paso 2</b><h3>Fundación</h3><p>Platea de hormigón armado o sistema mixto con pilares, según el terreno y el proyecto.</p></li>
+<li><span class="ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="8" width="36" height="32"/><path d="M15 8v32M24 8v32M33 8v32M6 24h36"/><path d="M6 40L24 8" stroke-dasharray="0"/></svg></span><b>Paso 3</b><h3>Fabricación en taller</h3><p>Los paneles de steel framing se arman bajo techo, a medida y sin depender del clima.</p></li>
+<li><span class="ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 32h30V18H3z"/><path d="M33 22h7l5 6v4H33"/><circle cx="11" cy="35" r="3.5"/><circle cx="38" cy="35" r="3.5"/><path d="M3 22h30M3 26h30" opacity=".6"/></svg></span><b>Paso 4</b><h3>Traslado hasta tu terreno</h3><p>Los paneles viajan terminados y apilados, listos para montar.</p></li>
+<li><span class="ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M8 42V22L24 10l16 12v20"/><path d="M8 42h32M16 42V28M24 42V28M32 42V28M8 28h32"/><path d="M24 4v6" stroke-dasharray="2 2"/></svg></span><b>Paso 5</b><h3>Montaje</h3><p>Se levantan los paneles sobre la fundación y se cierran con placas.</p></li>
+<li><span class="ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><circle cx="16" cy="24" r="8"/><circle cx="16" cy="24" r="3"/><path d="M24 24h20M38 24v6M43 24v5"/></svg></span><b>Paso 6</b><h3>Instalaciones y terminaciones</h3><p>Instalación eléctrica y sanitaria, cocina, baño, cielorraso, pisos y aberturas de aluminio.</p></li>
+      </ol>
     </div>
   </section>
 
-  <section class="band" aria-labelledby="t-obras">
+  <section class="band band--white" aria-labelledby="t-obras">
     <div class="wrap">
       <div class="section-head">
         <div><p class="eyebrow">Obras</p><h2 id="t-obras">Depósito comercial liviano</h2></div>
@@ -134,7 +205,6 @@
         <div><dt>Ejecución y montaje</dt><dd>50 días</dd></div>
         <div><dt>Ubicación</dt><dd>Maldonado</dd></div>
       </dl>
-
       <div class="terminaciones">
         <div class="fotos">
           <figure class="foto"><img src="img/obras/cocina.jpg" alt="Cocina terminada con mesada de granito y muebles blancos" width="1010" height="1180" loading="lazy"><figcaption>Cocina</figcaption></figure>
@@ -144,18 +214,29 @@
           <p class="eyebrow">Terminaciones</p>
           <h2>Así se entrega.</h2>
           <p>Cocina, baño, cielorraso, pisos, aberturas de aluminio e instalación eléctrica. Fotos de obras reales.</p>
-          <a class="link" href="como-construimos.html">Ver cómo construimos</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="band band--pino" aria-label="Más información">
-    <div class="wrap">
-      <div class="secciones">
-        <a href="como-construimos.html"><h3>Cómo construimos</h3><p>Fundación, fabricación en taller, montaje en tu terreno y terminaciones.</p><span>Ver el proceso</span></a>
-        <a href="zonas.html"><h3>Zonas</h3><p>Costa de Maldonado y Canelones, de Ciudad de la Costa a Garzón.</p><span>Ver zonas</span></a>
+  <section class="band" aria-labelledby="t-faq">
+    <div class="wrap faq">
+      <div style="display:flex; flex-direction:column; gap:14px"><p class="eyebrow">Preguntas frecuentes</p><h2 id="t-faq">Lo que más nos preguntan.</h2></div>
+      <div>
+        <details><summary>¿Cuánto sale una casa?</summary><p>Se calcula por m²: hasta 25 m², USD 669 el m²; hasta 35 m², USD 647; más de 35 m², USD 628. Son precios sin IVA ni leyes sociales. En <a class="link" href="presupuesto.html#calculadora">Pedir presupuesto</a> podés calcular un precio de referencia.</p></details>
+        <details><summary>¿Cuánto tarda la obra?</summary><p>Un monoambiente de 22 m² se ejecuta en 30 días y cada ampliación en 20 días. Si construís los 51 m² de una vez, el plazo total es de 65 días.</p></details>
+        <details><summary>¿Puedo construir mi propio diseño?</summary><p>Sí. Traenos tus planos o tu idea, lo modelamos en 3D y te pasamos el precio por m² según el tamaño.</p></details>
+        <details><summary>¿Puedo ampliar la casa más adelante?</summary><p>Sí. Evohouse 1 está pensada para crecer: arrancás con el monoambiente y le sumás uno o dos dormitorios cuando los necesites. <a class="link" href="vivienda-evolutiva.html">Ver cómo crece</a></p></details>
+        <details><summary>¿Qué fundación lleva?</summary><p>Platea de hormigón armado o sistema mixto con pilares, según el terreno y el proyecto.</p></details>
+        <details><summary>¿En qué zonas construyen?</summary><p>Punta del Este, Maldonado, San Carlos, José Ignacio, Garzón, Solís, Atlántida, Solymar y Ciudad de la Costa. Si tu terreno está en otra zona, consultanos. <a class="link" href="zonas.html">Ver zonas</a></p></details>
       </div>
+    </div>
+  </section>
+
+  <section class="band band--pino cierre">
+    <div class="wrap">
+      <div><h2>¿Tenés un terreno y una idea?</h2><p>Contanos qué querés construir y te pasamos un presupuesto.</p></div>
+      <a class="btn btn--madera" href="presupuesto.html">Pedir presupuesto</a>
     </div>
   </section>
 </main>

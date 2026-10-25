@@ -17,16 +17,18 @@
 <link rel="stylesheet" href="css/estilos.css">
 <style>
 .pasos { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
-.paso { display: grid; grid-template-columns: 80px minmax(0, 5fr) minmax(0, 6fr); gap: 32px; padding-block: 40px; border-top: 2px solid var(--tinta); align-items: start; }
-.paso__num { font-family: var(--display); font-weight: 800; font-size: 48px; line-height: 1; color: var(--pino); }
+.paso { display: grid; grid-template-columns: 96px minmax(0, 5fr) minmax(0, 6fr); gap: 32px; padding-block: 40px; border-top: 2px solid var(--tinta); align-items: start; }
+.paso__marca { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+.paso__num { font-family: var(--display); font-weight: 800; font-size: 44px; line-height: 1; color: var(--pino); }
+.paso__ic { width: 64px; height: 64px; border: 2px solid var(--pino); color: var(--pino); display: flex; align-items: center; justify-content: center; background: var(--blanco); }
+.paso__ic svg { width: 40px; height: 40px; }
 .paso__txt { display: flex; flex-direction: column; gap: 12px; }
 .paso__txt p { color: var(--gris); }
 .paso__img img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+.paso__img.recorte img { object-fit: contain; aspect-ratio: auto; }
 .paso__img.doble { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .paso__img.doble img { aspect-ratio: 3 / 4; }
-.paso__dibujo { background: var(--blanco); border: 1px solid var(--linea); aspect-ratio: 16 / 10; display: flex; align-items: center; justify-content: center; }
-.paso__dibujo svg { width: 46%; height: auto; }
-@media (max-width: 860px) { .paso { grid-template-columns: 56px minmax(0, 1fr); } .paso__img, .paso__dibujo { grid-column: 1 / -1; } .paso__num { font-size: 36px; } }
+@media (max-width: 860px) { .paso { grid-template-columns: 72px minmax(0, 1fr); gap: 20px; } .paso__img { grid-column: 1 / -1; } .paso__num { font-size: 34px; } .paso__ic { width: 52px; height: 52px; } .paso__ic svg { width: 32px; height: 32px; } }
 .beneficios { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; }
 .beneficios li { display: flex; flex-direction: column; gap: 10px; }
 .beneficios svg { width: 34px; height: 34px; }
@@ -60,28 +62,33 @@
     <div class="wrap">
       <ol class="pasos">
         <li class="paso">
-          <span class="paso__num">1</span>
-          <div class="paso__txt"><h2>Proyecto</h2><p>Elegís uno de nuestros diseños o nos traés el tuyo. Te pasamos el precio por m² según el tamaño de la casa.</p><a class="link" href="presupuesto.html">Pedir presupuesto</a></div>
-          <div class="paso__dibujo"><svg viewBox="0 0 56 44" fill="none" stroke="#22463C" stroke-width="1.6" aria-hidden="true"><rect x="2" y="2" width="52" height="40"/><path d="M2 22h30V2M32 30v12M20 22v-8"/><path d="M38 30h16" stroke-dasharray="3 3"/></svg></div>
+          <div class="paso__marca"><span class="paso__num">1</span><span class="paso__ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="7" width="38" height="26"/><path d="M18 41h12M24 33v8"/><path d="M11 27V13h12v8h8v6z"/><path d="M23 13v8"/></svg></span></div>
+          <div class="paso__txt"><h2>Proyecto</h2><p>Elegís uno de nuestros modelos o nos traés el tuyo. Lo modelamos completo en 3D, perfil por perfil, antes de fabricar.</p><a class="link" href="presupuesto.html">Pedir presupuesto</a></div>
+          <div class="paso__img"><img src="img/obras/proyecto-bim.jpg" alt="Modelo 3D de la estructura de steel framing en la computadora" width="1430" height="820" loading="lazy"></div>
         </li>
         <li class="paso">
-          <span class="paso__num">2</span>
-          <div class="paso__txt"><h2>Fundación</h2><p>Platea de hormigón o sistema mixto con pilares, según el terreno y el proyecto. Se diseña pensando en las ampliaciones futuras.</p></div>
-          <div class="paso__dibujo"><svg viewBox="0 0 56 44" fill="none" stroke="#22463C" stroke-width="1.6" aria-hidden="true"><rect x="2" y="22" width="52" height="8"/><path d="M8 30v12M28 30v12M48 30v12"/><path d="M8 22V6h40v16" stroke-dasharray="4 4"/></svg></div>
+          <div class="paso__marca"><span class="paso__num">2</span><span class="paso__ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M4 30l14-10h26L30 30z"/><path d="M4 30v6h26v-6M30 36l14-10v-6"/><path d="M11 25h26M15 22.5h26M18 30l12-10M24 30l12-10M12 30l12-10"/></svg></span></div>
+          <div class="paso__txt"><h2>Fundación</h2><p>Platea de hormigón armado o sistema mixto con pilares, según el terreno y el proyecto.</p></div>
+          <div class="paso__img"><img src="img/obras/platea.jpg" alt="Platea con malla de acero lista para hormigonar" width="1628" height="1178" loading="lazy"></div>
         </li>
         <li class="paso">
-          <span class="paso__num">3</span>
-          <div class="paso__txt"><h2>Fabricación en taller</h2><p>Los bastidores de steel framing, perfiles de acero galvanizado, se arman bajo techo: medidas precisas, control de calidad y sin depender del clima.</p></div>
-          <div class="paso__dibujo"><svg viewBox="0 0 56 44" fill="none" stroke="#22463C" stroke-width="1.6" aria-hidden="true"><rect x="2" y="2" width="52" height="40"/><path d="M15 2v40M28 2v40M41 2v40M2 22h52"/><path d="M2 2l13 20M28 22l13 20"/></svg></div>
+          <div class="paso__marca"><span class="paso__num">3</span><span class="paso__ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="8" width="36" height="32"/><path d="M15 8v32M24 8v32M33 8v32M6 24h36"/><path d="M6 40L24 8" stroke-dasharray="0"/></svg></span></div>
+          <div class="paso__txt"><h2>Fabricación en taller</h2><p>Los paneles de steel framing se arman bajo techo, a medida y sin depender del clima.</p></div>
+          <div class="paso__img"><img src="img/obras/paneles-taller.jpg" alt="Paneles de steel framing terminados, apilados en el taller" width="1220" height="1080" loading="lazy"></div>
         </li>
         <li class="paso">
-          <span class="paso__num">4</span>
-          <div class="paso__txt"><h2>Montaje en tu terreno</h2><p>Los paneles llegan listos y se montan sobre la fundación. Menos días de obra, menos desperdicio y una obra más limpia.</p></div>
-          <div class="paso__img"><img src="img/obras/estructura-taller.jpg" alt="Paneles de steel framing montados en obra, con placas OSB" width="1800" height="806" loading="lazy" style="object-position: 30% 50%"></div>
+          <div class="paso__marca"><span class="paso__num">4</span><span class="paso__ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 32h30V18H3z"/><path d="M33 22h7l5 6v4H33"/><circle cx="11" cy="35" r="3.5"/><circle cx="38" cy="35" r="3.5"/><path d="M3 22h30M3 26h30" opacity=".6"/></svg></span></div>
+          <div class="paso__txt"><h2>Traslado hasta tu terreno</h2><p>Los paneles viajan terminados y apilados, listos para montar.</p></div>
+          <div class="paso__img recorte"><img src="img/obras/traslado.webp" alt="Camión con los paneles de steel framing cargados" width="1073" height="629" loading="lazy"></div>
         </li>
         <li class="paso">
-          <span class="paso__num">5</span>
-          <div class="paso__txt"><h2>Instalaciones y terminaciones</h2><p>Instalación eléctrica y sanitaria, cocina, baño, cielorraso, pisos y aberturas de aluminio. La casa se entrega lista para vivir.</p></div>
+          <div class="paso__marca"><span class="paso__num">5</span><span class="paso__ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M8 42V22L24 10l16 12v20"/><path d="M8 42h32M16 42V28M24 42V28M32 42V28M8 28h32"/><path d="M24 4v6" stroke-dasharray="2 2"/></svg></span></div>
+          <div class="paso__txt"><h2>Montaje</h2><p>Se levantan los paneles sobre la fundación y se cierran con placas.</p></div>
+          <div class="paso__img"><img src="img/obras/montaje.jpg" alt="Casa en steel framing durante el montaje, con las placas a medio colocar" width="1372" height="1030" loading="lazy"></div>
+        </li>
+        <li class="paso">
+          <div class="paso__marca"><span class="paso__num">6</span><span class="paso__ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><circle cx="16" cy="24" r="8"/><circle cx="16" cy="24" r="3"/><path d="M24 24h20M38 24v6M43 24v5"/></svg></span></div>
+          <div class="paso__txt"><h2>Instalaciones y terminaciones</h2><p>Instalación eléctrica y sanitaria, cocina, baño, cielorraso, pisos y aberturas de aluminio.</p></div>
           <div class="paso__img doble"><img src="img/obras/cocina.jpg" alt="Cocina terminada" width="1010" height="1180" loading="lazy"><img src="img/obras/dormitorio.jpg" alt="Dormitorio terminado" width="646" height="1200" loading="lazy"></div>
         </li>
       </ol>
