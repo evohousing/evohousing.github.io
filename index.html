@@ -22,7 +22,8 @@
 .hero p.lead { color: var(--sobre-pino); }
 .hero__ctas { display: flex; flex-wrap: wrap; gap: 12px; }
 .hero__img { min-height: 460px; position: relative; }
-.hero__img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 45% 60%; }
+.hero__img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 40% 50%; }
+.ilustrativa { position: absolute; right: 12px; bottom: 12px; font-size: 12px; color: var(--hueso); background: rgba(23,32,29,.6); padding: 3px 8px; }
 @media (max-width: 860px) { .hero { grid-template-columns: 1fr; } .hero__text { padding-right: max(20px, env(safe-area-inset-right, 0px)); } .hero__img { min-height: 0; aspect-ratio: 4 / 3; order: -1; } }
 .datos-clave { background: var(--blanco); border-bottom: 1px solid var(--linea); }
 .datos-clave ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
@@ -106,7 +107,7 @@
         <a class="btn btn--line" href="vivienda-evolutiva.html">Ver modelos</a>
       </div>
     </div>
-    <div class="hero__img"><img src="img/obras/estructura-sitio.jpg" alt="Estructura metálica montada en obra, contra el cielo" width="1800" height="1350"></div>
+    <div class="hero__img"><img src="img/casa.jpg" alt="Vivienda EvoHousing de un ambiente con gran ventanal y deck de madera, al atardecer" width="1800" height="1126"><span class="ilustrativa">Imagen ilustrativa</span></div>
   </section>
 
   <section class="datos-clave" aria-label="En resumen">
